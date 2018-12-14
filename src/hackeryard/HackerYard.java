@@ -18,27 +18,28 @@ import javafx.stage.Stage;
  * @author jonathan
  */
 public class HackerYard extends Application {
-    
+
+    Stage stage;
+
     @Override
     public void start(Stage primaryStage) {
+        stage = primaryStage;
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Hello World!");
             }
         });
-        
+
         StackPane root = new StackPane();
         root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
+        stage.setTitle("Hello World!");
+
+        toJoueur();
     }
 
     /**
@@ -47,5 +48,16 @@ public class HackerYard extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
+    public void toPlateau() {
+        stage.setScene(new Scene(new InterfacePlateau(), 300, 250));
+        stage.show();
+    }
+
+    public void toJoueur() {
+        stage.setScene(new Scene(new InterfaceJoueur(this), 300, 250));
+        stage.show();
+
+    }
+
 }
