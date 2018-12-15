@@ -8,6 +8,7 @@ package hackeryard;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -20,26 +21,17 @@ import javafx.stage.Stage;
 public class HackerYard extends Application {
 
     Stage stage;
+    Scene scene;
 
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        scene = new Scene(new Group(), 500, 600);
+        stage.setScene(scene);
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-        stage.setTitle("Hello World!");
-
-        toJoueur();
+        toMenu();
+        stage.show();
     }
 
     /**
@@ -49,15 +41,16 @@ public class HackerYard extends Application {
         launch(args);
     }
 
+    public void toMenu() {
+        scene.setRoot(new InterfaceTitre(this, scene));
+    }
+
     public void toPlateau() {
-        stage.setScene(new Scene(new InterfacePlateau(), 300, 250));
-        stage.show();
+        scene.setRoot(new InterfacePlateau(this, scene));
     }
 
     public void toJoueur() {
-        stage.setScene(new Scene(new InterfaceJoueur(this), 300, 250));
-        stage.show();
-
+        scene.setRoot(new InterfaceJoueur(this, scene));
     }
 
 }

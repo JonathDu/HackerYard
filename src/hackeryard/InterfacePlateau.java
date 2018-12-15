@@ -6,6 +6,7 @@
 package hackeryard;
 
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,7 +16,7 @@ import javafx.scene.layout.VBox;
  *
  * @author jonathan
  */
-public class InterfacePlateau extends Parent {
+public class InterfacePlateau extends Interface {
 
     BorderPane pane;
     VBox left;
@@ -25,7 +26,8 @@ public class InterfacePlateau extends Parent {
     /**
      * Constructeur
      */
-    public InterfacePlateau() {
+    public InterfacePlateau(HackerYard main, Scene scene) {
+        super(main, scene);
         left = new VBox();
         right = new VBox();
         graphe = new InterfaceGraphe();
@@ -35,8 +37,6 @@ public class InterfacePlateau extends Parent {
 
     /**
      * Mets en place les éléments graphique sur l'Interface
-     *
-     * @param main
      */
     private void initaliseGraphique() {
         left = new VBox();

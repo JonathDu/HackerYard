@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,12 +21,14 @@ import javafx.scene.layout.VBox;
 
 /**
  * Interface de choix des joueurs
+ *
  * @author jonathan
  */
-public class InterfaceJoueur extends Parent {
+public class InterfaceJoueur extends Interface {
 
     BorderPane pane;
     VBox centre;
+    HBox bas;
     HBox t;
     Label misterXLabel;
     ArrayList<Node> joueur;
@@ -33,26 +36,32 @@ public class InterfaceJoueur extends Parent {
 
     Button valider;
 
-    
     /**
-     * Construteur, passage en paramètres de la classe principale HackerYard, qui permet de faire le liens entre les interfaces
-     * @param main 
+     * Construteur, passage en paramètres de la classe principale HackerYard,
+     * qui permet de faire le liens entre les interfaces
+     *
+     * @param main
      */
-    public InterfaceJoueur(HackerYard main) {
-        initaliseGraphique(main);
-        initHandler(main);
+    public InterfaceJoueur(HackerYard main, Scene scene) {
+        super(main, scene);
+        initaliseGraphique();
+        initHandler();
     }
 
-    
     /**
      * Mets en place les éléments graphique sur l'Interface
-     * @param main 
      */
-    private void initaliseGraphique(HackerYard main) {
+    private void initaliseGraphique() {
         pane = new BorderPane();
+
+        pane.prefHeightProperty().bind(scene.heightProperty());
+        pane.prefWidthProperty().bind(scene.widthProperty());
 
         t = new HBox();
         t.setAlignment(Pos.CENTER);
+        
+        bas = new HBox();
+        bas.setAlignment(Pos.CENTER);
 
         centre = new VBox();
         centre.setAlignment(Pos.CENTER);
@@ -74,19 +83,16 @@ public class InterfaceJoueur extends Parent {
         majJoueur();
         t.getChildren().add(centre);
         pane.setCenter(t);
-        pane.setBottom(valider);
+        bas.getChildren().add(valider);
+        pane.setBottom(bas);
         this.getChildren().add(pane);
-        
-        
 
     }
 
-    
     /**
      * Ajoute les handlers des elements graphiques
-     * @param main 
      */
-    private void initHandler(HackerYard main) {
+    private void initHandler() {
         addPlayer.setOnAction((t) -> {
             joueur.remove(addPlayer);
             joueur.add(new TextField("Detective " + joueur.size()));
@@ -100,7 +106,6 @@ public class InterfaceJoueur extends Parent {
 
     }
 
-    
     /**
      * Mets a jour le nombre de champs de textes pour le nom des joueurs
      */
