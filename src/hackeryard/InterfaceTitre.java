@@ -25,8 +25,8 @@ public class InterfaceTitre extends Interface {
     private BorderPane pane;
     private HBox centre;
 
-    public InterfaceTitre(HackerYard main, Scene scene) {
-        super(main, scene);
+    public InterfaceTitre(Controller controller, Scene scene) {
+        super(controller, scene);
 
         initialiseGraphique();
         initialiseHandler(main);
@@ -55,7 +55,7 @@ public class InterfaceTitre extends Interface {
      */
     private void initialiseHandler(HackerYard main) {
         jouer.setOnAction((t) -> {
-            main.toJoueur();
+            controller.toJoueur();
         });
     }
 }

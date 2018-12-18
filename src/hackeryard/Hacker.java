@@ -14,8 +14,8 @@ public class Hacker extends Joueur {
     Integer nombreT5;
     Integer tourDeJeu;
 
-    public Hacker(Integer nombreT1, Integer nombreT2, Integer nombreT3, Integer position, Integer nombreT4, Integer nombreT5, Integer tourDeJeu) {
-        super(nombreT1,nombreT2,nombreT3,position);
+    public Hacker(Integer nombreT1, Integer nombreT2, Integer nombreT3, Noeud position, Integer nombreT4, Integer nombreT5, Integer tourDeJeu) {
+        super("Mister X", nombreT1,nombreT2,nombreT3,position);
         this.nombreT4 = nombreT4;
         this.nombreT5 = nombreT5;
         this.tourDeJeu = tourDeJeu;

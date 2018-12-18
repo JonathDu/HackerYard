@@ -5,10 +5,9 @@
  */
 package hackeryard;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -22,17 +21,15 @@ public class InterfacePlateau extends Interface {
     VBox left;
     VBox right;
     InterfaceGraphe graphe;
+    Jeu jeu;
 
     /**
      * Constructeur
      */
-    public InterfacePlateau(HackerYard main, Scene scene) {
-        super(main, scene);
-        left = new VBox();
-        right = new VBox();
-        graphe = new InterfaceGraphe();
-
-        pane = new BorderPane();
+    public InterfacePlateau(Controller controller, Scene scene, Jeu jeu) {
+        super(controller, scene);
+        this.jeu = jeu;
+        initaliseGraphique();
     }
 
     /**
@@ -40,13 +37,23 @@ public class InterfacePlateau extends Interface {
      */
     private void initaliseGraphique() {
         left = new VBox();
+
+        for (Joueur j : jeu.getJoueurs()) {
+            Label name = new Label(j.getNom());
+            Label nbCarte = new Label("T1 : " + j.nombreT1 + " T2 : " + j.nombreT2 + " T3 : " + j.nombreT3);
+            left.getChildren().add(name);
+            left.getChildren().add(nbCarte);
+
+        }
+
         right = new VBox();
-        graphe = new InterfaceGraphe();
+        graphe = new InterfaceGraphe(controller, jeu);
 
         pane = new BorderPane();
         pane.setLeft(left);
-        pane.setRight(right);
         pane.setCenter(graphe);
+
+        this.getChildren().add(pane);
     }
 
 }

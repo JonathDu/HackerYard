@@ -15,11 +15,11 @@ import javafx.stage.Stage;
  * @author jonathan
  */
 public abstract class Interface extends Parent{
-    HackerYard main;
+    Controller controller;
     Scene scene;
 
-    protected Interface(HackerYard main, Scene scene) {
-        this.main = main;
+    protected Interface(Controller controller, Scene scene) {
+        this.controller = controller;
         this.scene = scene;
     }
     

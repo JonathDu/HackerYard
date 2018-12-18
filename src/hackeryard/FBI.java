@@ -11,8 +11,8 @@ package hackeryard;
  */
 public class FBI extends Joueur{
 
-    public FBI(Integer nombreT1, Integer nombreT2, Integer nombreT3, Integer position) {
-        super(nombreT1, nombreT2, nombreT3, position);
+    public FBI(String nom, Integer nombreT1, Integer nombreT2, Integer nombreT3, Noeud position) {
+        super(nom, nombreT1, nombreT2, nombreT3, position);
     }
     
 }

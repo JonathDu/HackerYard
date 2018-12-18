@@ -6,11 +6,8 @@
 package hackeryard;
 
 import java.util.ArrayList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,7 +28,7 @@ public class InterfaceJoueur extends Interface {
     HBox bas;
     HBox t;
     Label misterXLabel;
-    ArrayList<Node> joueur;
+    ArrayList<TextField> joueur;
     Button addPlayer;
 
     Button valider;
@@ -42,8 +39,8 @@ public class InterfaceJoueur extends Interface {
      *
      * @param main
      */
-    public InterfaceJoueur(HackerYard main, Scene scene) {
-        super(main, scene);
+    public InterfaceJoueur(Controller controller, Scene scene) {
+        super(controller, scene);
         initaliseGraphique();
         initHandler();
     }
@@ -59,7 +56,7 @@ public class InterfaceJoueur extends Interface {
 
         t = new HBox();
         t.setAlignment(Pos.CENTER);
-        
+
         bas = new HBox();
         bas.setAlignment(Pos.CENTER);
 
@@ -73,12 +70,8 @@ public class InterfaceJoueur extends Interface {
 
         addPlayer = new Button("Ajouter un détéctive");
 
-        joueur.add(misterXLabel);
-
         joueur.add(new TextField("Detective 1"));
         joueur.add(new TextField("Detective 2"));
-
-        joueur.add(addPlayer);
 
         majJoueur();
         t.getChildren().add(centre);
@@ -94,13 +87,41 @@ public class InterfaceJoueur extends Interface {
      */
     private void initHandler() {
         addPlayer.setOnAction((t) -> {
-            joueur.remove(addPlayer);
             joueur.add(new TextField("Detective " + joueur.size()));
-            joueur.add(addPlayer);
             majJoueur();
         });
         valider.setOnAction((t) -> {
-            main.toPlateau();
+            ArrayList<Joueur> liste = new ArrayList<>();
+
+            Noeud tableauN[] = new Noeud[4];
+            Arc tableauA[] = new Arc[4];
+            Integer[] posJoueurs = {1, 2, 3, 4};
+            Noeud n1 = new Noeud(1, 0, 0);
+            Noeud n2 = new Noeud(2, 0, 1);
+            Noeud n3 = new Noeud(3, 1, 0);
+            Noeud n4 = new Noeud(4, 1, 1);
+            Noeud n5 = new Noeud(5, 2, 0);
+            tableauN[0] = n1;
+            tableauN[1] = n2;
+            tableauN[2] = n3;
+            tableauN[3] = n4;
+            Arc a1 = new Arc(n1, n2, 1);
+            Arc a2 = new Arc(n3, n1, 2);
+            Arc a3 = new Arc(n4, n1, 2);
+            Arc a4 = new Arc(n4, n2, 2);
+
+            tableauA[0] = a1;
+            tableauA[1] = a2;
+            tableauA[2] = a3;
+            tableauA[3] = a4;
+
+            liste.add(new Hacker(3, 3, 3, n4, 3, 3, 3));
+            for (TextField e : joueur) {
+                liste.add(new Joueur(e.getText(), 1, 1, 1, n1));
+            }
+
+            Graphe g1 = new Graphe(tableauN, tableauA, liste);
+            controller.toPlateau(liste, g1);
 
         });
 
@@ -111,9 +132,11 @@ public class InterfaceJoueur extends Interface {
      */
     private void majJoueur() {
         centre.getChildren().clear();
-        for (Node e : joueur) {
+        centre.getChildren().add(misterXLabel);
+        for (TextField e : joueur) {
             centre.getChildren().add(e);
         }
+        centre.getChildren().add(addPlayer);
     }
 
 }

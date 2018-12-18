@@ -30,8 +30,11 @@ public class HackerYard extends Application {
 
         scene = new Scene(new Group(), 500, 600);
         stage.setScene(scene);
-
-        toMenu();
+        
+        Controller controller = new Controller(stage, scene);
+        
+        
+        controller.toMenu();
         stage.show();
     }
 
@@ -47,6 +50,7 @@ public class HackerYard extends Application {
         Noeud n2 = new Noeud(2);
         Noeud n3 = new Noeud(3);
         Noeud n4 = new Noeud(4);
+        
         tableauN[0]=n1;
         tableauN[1]=n2;
         tableauN[2]=n3;
@@ -56,23 +60,12 @@ public class HackerYard extends Application {
         tableauA[0]=a1;
         tableauA[1]=a2;
         
-        Graphe g1 = new Graphe(tableauN,tableauA,posJoueurs);
-        System.out.println(g1.GetSuivanti(n1)); //j'ai utilisé GetSuivanti pour afficher sous forme d'integer pour tester
+        //Graphe g1 = new Graphe(tableauN,tableauA,posJoueurs);
+        //System.out.println(g1.GetSuivanti(n1)); //j'ai utilisé GetSuivanti pour afficher sous forme d'integer pour tester
         launch(args);
 
     }
 
-    public void toMenu() {
-        scene.setRoot(new InterfaceTitre(this, scene));
-    }
-
-    public void toPlateau() {
-        scene.setRoot(new InterfacePlateau(this, scene));
-    }
-
-    public void toJoueur() {
-        scene.setRoot(new InterfaceJoueur(this, scene));
-    }
     public Noeud[] listeNoeudsAuto(Integer t){
         return null;
     }

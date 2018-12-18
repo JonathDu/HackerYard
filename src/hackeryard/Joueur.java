@@ -13,12 +13,18 @@ public class Joueur {
     Integer nombreT1;
     Integer nombreT2;
     Integer nombreT3;
-    Integer position;
+    Noeud position;
+    private String nom;
 
-    public Joueur(Integer nombreT1, Integer nombreT2, Integer nombreT3, Integer position) {
+    public Joueur(String nom, Integer nombreT1, Integer nombreT2, Integer nombreT3, Noeud position) {
         this.nombreT1 = nombreT1;
         this.nombreT2 = nombreT2;
         this.nombreT3 = nombreT3;
         this.position = position;
+        this.nom = nom;
+    }
+    
+    public String getNom(){
+        return this.nom;
     }
 }

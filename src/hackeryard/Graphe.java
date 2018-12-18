@@ -15,14 +15,16 @@ public class Graphe {
 
     Noeud tableauNoeuds[];
     Arc tableauArcs[];
-    Joueur tableauJoueurs[];
+    ArrayList<Joueur> tableauJoueurs;
 
-    public Graphe(Noeud[] tableauNoeuds, Arc[] tableauArcs, Integer[] posJoueurs) {
-        this.tableauNoeuds = tableauNoeuds;
-        this.tableauArcs = tableauArcs;
-        this.tableauJoueurs = tableauJoueurs;
+    public Graphe() {
     }
 
+    public Graphe(Noeud[] tableauNoeuds, Arc[] tableauArcs, ArrayList<Joueur> posJoueurs) {
+        this.tableauNoeuds = tableauNoeuds;
+        this.tableauArcs = tableauArcs;
+        this.tableauJoueurs = posJoueurs;
+    }
 
     public ArrayList<Noeud> GetSuivant(Noeud n) {
         ArrayList<Noeud> listeSuivant = new ArrayList<>();
@@ -49,5 +51,23 @@ public class Graphe {
             }
         }
         return listeSuivant;
+    }
+
+    public Boolean estOccupee(Noeud n) {
+        for (Joueur j : tableauJoueurs) {
+            if (j.position == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Joueur occupant(Noeud n) {
+        for (Joueur j : tableauJoueurs) {
+            if (j.position == n) {
+                return j;
+            }
+        }
+        return null;
     }
 }
