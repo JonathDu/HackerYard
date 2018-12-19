@@ -88,17 +88,31 @@ public class Graphe {
             int n1 = rand.nextInt(tableauN.size() - 1);
             int n2 = rand.nextInt(tableauN.size() - 1);
             if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) <= 9))) {
-                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 3));
+                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
             } else {
                 m--;
             }
         }
 
+        for (int o = 0; o < tableauN.size(); o++) {
+            Boolean isRelie = false;
+            for (int p = 0; p < tableauA.size(); p++) {
+                if (tableauN.get(o) == tableauA.get(p).n1 || tableauN.get(o) == tableauA.get(p).n2) {
+                    isRelie = true;
+                }
+            }
+            if (isRelie == false) {
+                System.out.println("Le noeud "+tableauN.get(o).posX+","+tableauN.get(o).posY+" est isole, on le supprime donc");
+                tableauN.remove(o);
+            }
+        }
+        //manque a placer les joueurs aleatoirement
+//
 //        int n1 = rand.nextInt(tableauN.size() - 1);
 //        int n2 = rand.nextInt(tableauN.size() - 1);
 //        ArrayList<Joueur> posJoueurs = new ArrayList<>();
-//        posJoueurs.add(new FBI("pat",2,2,2,tableauN.get(n1), Color.BLUE));
-//        posJoueurs.add(new FBI("leo",2,2,2,tableauN.get(n2), Color.CHOCOLATE));
+//        posJoueurs.add(new FBI("pat", 2, 2, 2, tableauN.get(n1)));
+//        posJoueurs.add(new FBI("leo", 2, 2, 2, tableauN.get(n2)));
         this.tableauNoeuds = tableauN;
         this.tableauArcs = tableauA;
 //        this.tableauJoueurs = posJoueurs;
