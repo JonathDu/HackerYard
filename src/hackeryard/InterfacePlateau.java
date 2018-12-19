@@ -40,6 +40,8 @@ public class InterfacePlateau extends Interface {
 
         for (Joueur j : jeu.getJoueurs()) {
             Label name = new Label(j.getNom());
+            name.setTextFill(j.couleur);
+
             Label nbCarte = new Label("T1 : " + j.nombreT1 + " T2 : " + j.nombreT2 + " T3 : " + j.nombreT3);
             left.getChildren().add(name);
             left.getChildren().add(nbCarte);
@@ -56,4 +58,18 @@ public class InterfacePlateau extends Interface {
         this.getChildren().add(pane);
     }
 
+    public void majGraphique() {
+        pane.setLeft(null);
+        left = new VBox();
+        for (Joueur j : jeu.getJoueurs()) {
+            Label name = new Label(j.getNom());
+            name.setTextFill(j.couleur);
+
+            Label nbCarte = new Label("T1 : " + j.nombreT1 + " T2 : " + j.nombreT2 + " T3 : " + j.nombreT3);
+            left.getChildren().add(name);
+            left.getChildren().add(nbCarte);
+
+        }
+        pane.setLeft(left);
+    }
 }

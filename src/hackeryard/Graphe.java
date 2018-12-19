@@ -70,4 +70,13 @@ public class Graphe {
         }
         return null;
     }
+
+    public int typeArc(Noeud n1, Noeud n2) {
+        for (Arc a : tableauArcs) {
+            if ((a.n1 == n1 && a.n2 == n2) || (a.n2 == n1 && a.n1 == n2) ) {
+                return a.typeArc;
+            }
+        }
+        return -1;
+    }
 }

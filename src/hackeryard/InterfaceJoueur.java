@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * Interface de choix des joueurs
@@ -87,14 +88,17 @@ public class InterfaceJoueur extends Interface {
      */
     private void initHandler() {
         addPlayer.setOnAction((t) -> {
-            joueur.add(new TextField("Detective " + joueur.size()));
-            majJoueur();
+            if (joueur.size() < 5) {
+                joueur.add(new TextField("Detective " + (joueur.size() + 1)));
+                majJoueur();
+            }
         });
+
         valider.setOnAction((t) -> {
             ArrayList<Joueur> liste = new ArrayList<>();
 
             Noeud tableauN[] = new Noeud[4];
-            Arc tableauA[] = new Arc[4];
+            Arc tableauA[] = new Arc[6];
             Integer[] posJoueurs = {1, 2, 3, 4};
             Noeud n1 = new Noeud(1, 0, 0);
             Noeud n2 = new Noeud(2, 0, 1);
@@ -106,18 +110,32 @@ public class InterfaceJoueur extends Interface {
             tableauN[2] = n3;
             tableauN[3] = n4;
             Arc a1 = new Arc(n1, n2, 1);
-            Arc a2 = new Arc(n3, n1, 2);
-            Arc a3 = new Arc(n4, n1, 2);
-            Arc a4 = new Arc(n4, n2, 2);
+            Arc a2 = new Arc(n3, n1, 1);
+            Arc a3 = new Arc(n4, n1, 1);
+            Arc a4 = new Arc(n4, n2, 1);
+            Arc a5 = new Arc(n3, n2, 1);
+            Arc a6 = new Arc(n3, n4, 1);
 
             tableauA[0] = a1;
             tableauA[1] = a2;
             tableauA[2] = a3;
             tableauA[3] = a4;
+            tableauA[4] = a5;
+            tableauA[5] = a6;
 
-            liste.add(new Hacker(3, 3, 3, n4, 3, 3, 3));
+            ArrayList<Color> couleur = new ArrayList<>();
+            couleur.add(Color.PURPLE);
+            couleur.add(Color.YELLOW);
+            couleur.add(Color.BLUE);
+            couleur.add(Color.CHARTREUSE);
+            couleur.add(Color.GREEN);
+            couleur.add(Color.RED);
+
+            liste.add(new Hacker(3, 3000, 3, n4, 3, 3, 3, couleur.get(0)));
+            int i = 1;
             for (TextField e : joueur) {
-                liste.add(new Joueur(e.getText(), 1, 1, 1, n1));
+                liste.add(new Joueur(e.getText(), 100, 1, 1, n1, couleur.get(i)));
+                i++;
             }
 
             Graphe g1 = new Graphe(tableauN, tableauA, liste);

@@ -54,6 +54,9 @@ public class Jeu {
         return joueurs.get(joueurCourant);
     }
     
+    public int getTourRestant(){
+        return tourMax - nbTour;
+    }
     
     
 }

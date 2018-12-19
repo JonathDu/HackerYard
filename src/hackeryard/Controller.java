@@ -34,4 +34,8 @@ public class Controller {
     public void toJoueur() {
         scene.setRoot(new InterfaceJoueur(this, scene));
     }
+    
+    public Scene getScene(){
+        return scene;
+    }
 }
