@@ -39,58 +39,63 @@ public class Graphe {
             System.out.println(n);
             if (listecase.contains(n)) {
                 listecase.removeIf(yo -> yo.intValue() == n);
-                tableauN.add(new Noeud(n % taillel, n/taillel));
-            }
-            else {
+                tableauN.add(new Noeud(n % taillel, n / taillel));
+            } else {
                 i--;
             }
         }
-        for (int k = 0; k < nbn-3; k++) {
+        for (int k = 0; k < nbn - 3; k++) {
             int n1 = rand.nextInt(tableauN.size() - 1);
             int n2 = rand.nextInt(tableauN.size() - 1);
-            
-            if (((tableauN.get(n1).posX == tableauN.get(n2).posX) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 1)) || ((tableauN.get(n1).posY == tableauN.get(n2).posY) && (Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 1)) || ((((tableauN.get(n1).posX - tableauN.get(n2).posX) ^ 2) == 1) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 1))) {
+
+            if (((tableauN.get(n1).posX == tableauN.get(n2).posX) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 1)) || ((tableauN.get(n1).posY == tableauN.get(n2).posY) && (Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 1)) || ((((tableauN.get(n1).posX - tableauN.get(n2).posX) ^ 2) == 1) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 1))) {
 
                 tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 1));
 
-            }
-            else {
+            } else {
                 k--;
             }
         }
-        for (int l=0;l<nbn/2;l++){
+        for (int l = 0; l < nbn / 2; l++) {
             int n1 = rand.nextInt(tableauN.size() - 1);
             int n2 = rand.nextInt(tableauN.size() - 1);
-            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) <= 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 4)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) <= 4))){
+            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) <= 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 4)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) <= 4))) {
                 tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
-            }
-            else {
+            } else {
                 l--;
             }
-            
-            
-            
+
         }
-        
-        for (int m=0;m<nbn/3;m++){
+
+        for (int m = 0; m < nbn / 3; m++) {
             int n1 = rand.nextInt(tableauN.size() - 1);
             int n2 = rand.nextInt(tableauN.size() - 1);
-            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) <= 9))){
+            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) <= 9))) {
                 tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
-            }
-            else {
+            } else {
                 m--;
             }
         }
-        
+
+        for (int o = 0; o < tableauN.size(); o++) {
+            Boolean isRelie = false;
+            for (int p = 0; p < tableauA.size(); p++) {
+                if (tableauN.get(o) == tableauA.get(p).n1 || tableauN.get(o) == tableauA.get(p).n2) {
+                    isRelie = true;
+                }
+            }
+            if (isRelie == false) {
+                System.out.println("Le noeud "+tableauN.get(o).posX+","+tableauN.get(o).posY+" est isole, on le supprime donc");
+                tableauN.remove(o);
+            }
+        }
         //manque a placer les joueurs aleatoirement
-        
-        
+
         int n1 = rand.nextInt(tableauN.size() - 1);
         int n2 = rand.nextInt(tableauN.size() - 1);
         ArrayList<Joueur> posJoueurs = new ArrayList<>();
-        posJoueurs.add(new FBI("pat",2,2,2,tableauN.get(n1)));
-        posJoueurs.add(new FBI("leo",2,2,2,tableauN.get(n2)));
+        posJoueurs.add(new FBI("pat", 2, 2, 2, tableauN.get(n1)));
+        posJoueurs.add(new FBI("leo", 2, 2, 2, tableauN.get(n2)));
         this.tableauNoeuds = tableauN;
         this.tableauArcs = tableauA;
         this.tableauJoueurs = posJoueurs;
