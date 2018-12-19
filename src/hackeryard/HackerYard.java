@@ -43,25 +43,28 @@ public class HackerYard extends Application {
      */
     public static void main(String[] args) {
         //test pour savoir si Getsuivant marche
-        Noeud tableauN[] = new Noeud[4];
-        Arc tableauA[] = new Arc[2];
-        Integer[] posJoueurs = {1,2,3,4};
-        Noeud n1 = new Noeud(1);
-        Noeud n2 = new Noeud(2);
-        Noeud n3 = new Noeud(3);
-        Noeud n4 = new Noeud(4);
+        ArrayList<Noeud> tableauN = new ArrayList<>();
+        ArrayList<Arc> tableauA = new ArrayList<>();
+        ArrayList<Joueur> posJoueurs = new ArrayList<>();
         
-        tableauN[0]=n1;
-        tableauN[1]=n2;
-        tableauN[2]=n3;
-        tableauN[3]=n4;
+        Noeud n1 = new Noeud(0,1);
+        Noeud n2 = new Noeud(2,0);
+        Noeud n3 = new Noeud(1,1);
+        Noeud n4 = new Noeud(2,1);
+        posJoueurs.add(new FBI("pat",2,2,2,n1));
+        posJoueurs.add(new FBI("leo",2,2,2,n3));
+        tableauN.add(n1);
+        tableauN.add(n2);
+        tableauN.add(n3);
+        tableauN.add(n4);        
         Arc a1 = new Arc(n1,n2,1);
         Arc a2 = new Arc(n3,n1,2);
-        tableauA[0]=a1;
-        tableauA[1]=a2;
         
-        //Graphe g1 = new Graphe(tableauN,tableauA,posJoueurs);
-        //System.out.println(g1.GetSuivanti(n1)); //j'ai utilisé GetSuivanti pour afficher sous forme d'integer pour tester
+        tableauA.add(a1);
+        tableauA.add(a2);
+        
+        Graphe g1 = new Graphe(tableauN,tableauA,posJoueurs);
+        System.out.println(g1.GetSuivanti(n1)); //j'ai utilisé GetSuivanti pour afficher sous forme d'integer pour tester
         launch(args);
 
     }

@@ -40,7 +40,7 @@ public class HandlerNoeud implements EventHandler<Event> {
 
         if (jeu.getGraphe().GetSuivant(jeu.getJoueurCourant().position).contains(noeud) && !jeu.getGraphe().estOccupee(noeud)) {
             jeu.getJoueurCourant().position = noeud;
-            System.out.println("Le joueur " + jeu.getJoueurCourant().getNom() + " est maintenant sur le noeud " + noeud.NoNoeud);
+            System.out.println("Le joueur " + jeu.getJoueurCourant().getNom() + " est maintenant sur le noeud ");
             jeu.tourSuivant();
         } else {
             System.out.println("Le mouvement n'est pas permis");

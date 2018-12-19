@@ -93,27 +93,27 @@ public class InterfaceJoueur extends Interface {
         valider.setOnAction((t) -> {
             ArrayList<Joueur> liste = new ArrayList<>();
 
-            Noeud tableauN[] = new Noeud[4];
-            Arc tableauA[] = new Arc[4];
+            ArrayList<Noeud> tableauN = new ArrayList<>();
+            ArrayList<Arc> tableauA = new ArrayList<>();
             Integer[] posJoueurs = {1, 2, 3, 4};
-            Noeud n1 = new Noeud(1, 0, 0);
-            Noeud n2 = new Noeud(2, 0, 1);
-            Noeud n3 = new Noeud(3, 1, 0);
-            Noeud n4 = new Noeud(4, 1, 1);
-            Noeud n5 = new Noeud(5, 2, 0);
-            tableauN[0] = n1;
-            tableauN[1] = n2;
-            tableauN[2] = n3;
-            tableauN[3] = n4;
+            Noeud n1 = new Noeud(0, 0);
+            Noeud n2 = new Noeud(0, 1);
+            Noeud n3 = new Noeud(1, 0);
+            Noeud n4 = new Noeud(1, 1);
+            Noeud n5 = new Noeud(2, 0);
+            tableauN.add(n1);
+            tableauN.add(n2);
+            tableauN.add(n3);
+            tableauN.add(n4);
             Arc a1 = new Arc(n1, n2, 1);
             Arc a2 = new Arc(n3, n1, 2);
             Arc a3 = new Arc(n4, n1, 2);
             Arc a4 = new Arc(n4, n2, 2);
 
-            tableauA[0] = a1;
-            tableauA[1] = a2;
-            tableauA[2] = a3;
-            tableauA[3] = a4;
+            tableauA.add(a1);
+            tableauA.add(a2);
+            tableauA.add(a3);
+            tableauA.add(a4);
 
             liste.add(new Hacker(3, 3, 3, n4, 3, 3, 3));
             for (TextField e : joueur) {

@@ -29,7 +29,7 @@ public class InterfaceGraphe extends Parent {
         Graphe g = jeu.getGraphe();
         noeuds = new ArrayList<>();
         circleToNoeud = new HashMap<>();
-        Noeud grille[][] = new Noeud[g.tableauNoeuds.length][g.tableauNoeuds.length];
+        Noeud grille[][] = new Noeud[g.tableauNoeuds.size()][g.tableauNoeuds.size()];
 
         for (Noeud n : g.tableauNoeuds) {
             grille[n.posX][n.posY] = n;
