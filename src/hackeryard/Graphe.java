@@ -73,9 +73,17 @@ public class Graphe {
         }
         
         for (int m=0;m<nbn/3;m++){
-            
+            int n1 = rand.nextInt(tableauN.size() - 1);
+            int n2 = rand.nextInt(tableauN.size() - 1);
+            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) <= 9))){
+                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
+            }
+            else {
+                m--;
+            }
         }
         
+        //manque a placer les joueurs aleatoirement
         
         
         int n1 = rand.nextInt(tableauN.size() - 1);
