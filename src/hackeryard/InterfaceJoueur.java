@@ -7,7 +7,6 @@ package hackeryard;
 
 import java.util.ArrayList;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -109,12 +108,11 @@ public class InterfaceJoueur extends Interface {
             liste.add(h);
             int i = 1;
             for (TextField e : joueur) {
-                liste.add(new Joueur(e.getText(), 100, 100, 100, couleur.get(i)));
+                liste.add(new FBI(e.getText(), 100, 100, 100, couleur.get(i)));
                 i++;
             }
 
-            //Graphe g1 = new Graphe(tableauN, tableauA, liste);
-            Graphe g1 = new Graphe(50,10,20);
+            Graphe g1 = new Graphe(50, 10, 20);
             g1.addJoueur(liste);
             controller.toPlateau(liste, g1, h);
 

@@ -6,8 +6,6 @@
 package hackeryard;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
@@ -18,6 +16,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 
 /**
+ * Interface affichant un noeud du graphe
  *
  * @author jonathan
  */
@@ -48,16 +47,27 @@ public class InterfaceNoeud extends Parent {
         this.getChildren().add(g);
     }
 
+    /**
+     * Ajoute un joueur sur le noeud
+     *
+     * @param couleurJoueur
+     */
     public void ajouterJoueur(Color couleurJoueur) {
         cercle.setStroke(couleurJoueur);
         isVisible = true;
     }
 
+    /**
+     * Supprime le joueur du noeud
+     */
     public void supprimerJoueur() {
         cercle.setStroke(Color.TRANSPARENT);
         isVisible = false;
     }
 
+    /**
+     * Ajoute le hacker sur le noeud
+     */
     public void ajouterHacker() {
         hacker = new Rectangle(50 * posx + 47, 50 * posy + 47, 6, 6);
         hacker.setFill(Color.PURPLE);
@@ -65,6 +75,9 @@ public class InterfaceNoeud extends Parent {
         g.getChildren().add(hacker);
     }
 
+    /**
+     * Supprime le hacker du noeud
+     */
     public void supprimerHacker() {
         if (hacker != null) {
             g.getChildren().remove(hacker);
@@ -72,6 +85,10 @@ public class InterfaceNoeud extends Parent {
         }
     }
 
+    /**
+     * Ajoute une connexion de type type sur le noeud
+     * @param type 
+     */
     public void ajouterConnexion(int type) {
 
         switch (type) {
@@ -88,6 +105,9 @@ public class InterfaceNoeud extends Parent {
 
     }
 
+    /**
+     * Affiche la connexion sous forme de rond
+     */
     public void afficherConnexion() {
         connexion.removeIf(new Integer(0)::equals);
         switch (connexion.size()) {

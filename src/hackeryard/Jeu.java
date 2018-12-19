@@ -33,14 +33,26 @@ public class Jeu {
         nbTourHacker = 1;
     }
 
+    /**
+     * Rencoie la liste des joueurs
+     * @return 
+     */
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
     }
 
+    /**
+     * Renvoie le graphe
+     * @return 
+     */
     public Graphe getGraphe() {
         return graphe;
     }
 
+    /**
+     * Renvoie le nombre de tour
+     * @return 
+     */
     public int getNbTour() {
         return nbTour;
     }
@@ -65,10 +77,18 @@ public class Jeu {
         }
     }
 
+    /**
+     * Renvoie le joueur courant
+     * @return 
+     */
     public Joueur getJoueurCourant() {
         return joueurs.get(joueurCourant);
     }
 
+    /**
+     * Renvoie le nombre de tour restant
+     * @return 
+     */
     public int getTourRestant() {
         return tourMax - nbTour;
     }
@@ -132,6 +152,10 @@ public class Jeu {
         return true;
     }
 
+    /**
+     * Set la derniere position connue du hacker
+     * @param posHacker 
+     */
     public void setPosHacker(Noeud posHacker) {
         this.posHacker = posHacker;
     }

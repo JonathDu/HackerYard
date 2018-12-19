@@ -7,14 +7,14 @@ package hackeryard;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
- *Partie commune a toutes les interfaces
+ * Partie commune a toutes les interfaces
+ *
  * @author jonathan
  */
-public abstract class Interface extends Parent{
+public abstract class Interface extends Parent {
+
     Controller controller;
     Scene scene;
 
@@ -22,9 +22,5 @@ public abstract class Interface extends Parent{
         this.controller = controller;
         this.scene = scene;
     }
-    
-    
 
-    
-    
 }

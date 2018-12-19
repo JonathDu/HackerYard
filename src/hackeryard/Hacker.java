@@ -8,6 +8,7 @@ package hackeryard;
 import javafx.scene.paint.Color;
 
 /**
+ * Classe du joueur Hacker
  *
  * @author Perso
  */

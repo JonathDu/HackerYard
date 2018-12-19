@@ -8,25 +8,25 @@ package hackeryard;
 import javafx.scene.paint.Color;
 
 /**
+ * Renvoie la couleur de l'arc en fonction de son type
  *
  * @author jonathan
  */
 public class Couleur {
-    public static Color getCouleurArc(int type){
-        switch(type){
+
+    public static Color getCouleurArc(int type) {
+        switch (type) {
             case 0:
                 return Color.BLACK;
             case 1:
                 return Color.BISQUE;
-                
+
             case 2:
                 return Color.CHOCOLATE;
             case 3:
                 return Color.DARKRED;
         }
         return Color.BLACK;
-    } 
-    
-    
-    
+    }
+
 }

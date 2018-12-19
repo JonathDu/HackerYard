@@ -8,10 +8,10 @@ package hackeryard;
 import javafx.scene.paint.Color;
 
 /**
- *
+ *Classe abstraite joueur, base pour FBI et Hacker
  * @author Perso
  */
-public class Joueur {
+public abstract class Joueur {
 
     Integer nombreT1;
     Integer nombreT2;

@@ -6,6 +6,7 @@
 package hackeryard;
 
 /**
+ * Arc d'un graphe, comporte deux noeuds et un entier qui represente son type
  *
  * @author Perso
  */

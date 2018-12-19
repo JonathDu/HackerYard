@@ -71,12 +71,18 @@ public class InterfacePlateau extends Interface {
         this.getChildren().add(pane);
     }
 
+    /**
+     * Mets a jour le panneau de gauche (joueur courant et nombre de carte)
+     */
     public void majGraphique() {
         pane.setLeft(null);
         setLeft();
         pane.setLeft(left);
     }
 
+    /**
+     * Initialise les elements du panneau gauche (joueur courant et nombre de carte)
+     */
     private void setLeft() {
         left = new VBox();
         left.setPadding(new Insets(30));

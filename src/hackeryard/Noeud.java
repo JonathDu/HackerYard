@@ -6,7 +6,7 @@
 package hackeryard;
 
 /**
- *
+ *Classe noeud
  * @author Perso
  */
 public class Noeud {

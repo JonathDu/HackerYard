@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Controller de l'application, fait le lien entre les différentes interface
  *
  * @author jonathan
  */
@@ -34,8 +35,8 @@ public class Controller {
     public void toJoueur() {
         scene.setRoot(new InterfaceJoueur(this, scene));
     }
-    
-    public Scene getScene(){
+
+    public Scene getScene() {
         return scene;
     }
 }

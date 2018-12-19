@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 
 /**
+ * Classe qui gere le deplacement d'un joueur
  *
  * @author jonathan
  */
@@ -30,6 +31,11 @@ public class HandlerNoeud implements EventHandler<Event> {
         this.noeudToInterface = noeudToInterface;
     }
 
+    /**
+     * Fonction appelé lors du click sur un noeud
+     *
+     * @param t
+     */
     @Override
     public void handle(Event t) {
 
@@ -91,9 +97,8 @@ public class HandlerNoeud implements EventHandler<Event> {
         noeudToInterface.get(jeu.getJoueurCourant().position).supprimerJoueur();
         if (!jeu.tourHacker()) {
             noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
-        }
-        else{
-            ((InterfacePlateau)noeudG.getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
+        } else {
+            ((InterfacePlateau) noeudG.getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
         }
         gestionPosHacker();
         jeu.getJoueurCourant().position = noeud;
@@ -111,9 +116,9 @@ public class HandlerNoeud implements EventHandler<Event> {
         }
 
     }
-    
-    private void gestionPosHacker(){
-        if(jeu.getNbTourHacker()%3 == 0 && jeu.tourHacker()){
+
+    private void gestionPosHacker() {
+        if (jeu.getNbTourHacker() % 3 == 0 && jeu.tourHacker()) {
             noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();
             jeu.setPosHacker(noeud);
             noeudToInterface.get(noeud).ajouterHacker();
