@@ -15,8 +15,8 @@ import javafx.stage.Stage;
  */
 public class Controller {
 
-    private Stage stage;
-    private Scene scene;
+    private final Stage stage;
+    private final Scene scene;
 
     public Controller(Stage stage, Scene scene) {
         this.stage = stage;

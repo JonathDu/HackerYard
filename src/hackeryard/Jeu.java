@@ -51,6 +51,9 @@ public class Jeu {
         } else {
             joueurCourant = 0;
         }
+        if(!verifJoueurPeutJouer()){
+            tourSuivant();
+        }
     }
 
     public Joueur getJoueurCourant() {
@@ -75,4 +78,28 @@ public class Jeu {
         }
     }
 
+    public boolean verifJoueurPeutJouer() {
+        for (Noeud n : graphe.GetSuivant(getJoueurCourant().position)) {
+            int type = graphe.typeArc(n, getJoueurCourant().position);
+            switch (type) {
+                case 1:
+                    if (getJoueurCourant().nombreT1 == 0) {
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (getJoueurCourant().nombreT2 == 0) {
+                        return false;
+                    }
+                    break;
+                case 3:
+                    if (getJoueurCourant().nombreT3 == 0) {
+                        return false;
+                    }
+                    break;
+            }
+
+        }
+        return true;
+    }
 }

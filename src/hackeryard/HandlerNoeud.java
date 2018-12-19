@@ -94,16 +94,17 @@ public class HandlerNoeud implements EventHandler<Event> {
         jeu.getJoueurCourant().position = noeud;
         noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
         //System.out.println("Le joueur " + jeu.getJoueurCourant().getNom() + " est maintenant sur le noeud " + noeud.NoNoeud);
-        ((InterfacePlateau)controller.getScene().getRoot()).majGraphique();
         jeu.tourSuivant();
-        if(jeu.getTourRestant() <= 0){
-                            controller.toMenu();
-                Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
-                dialog.setTitle("Fin du jeu");
-                dialog.setHeaderText(null);
-                dialog.setContentText("Le hacker à gagné !!!");
-                dialog.showAndWait();
-                return;
+
+        ((InterfacePlateau) controller.getScene().getRoot()).majGraphique();
+        if (jeu.getTourRestant() <= 0) {
+            controller.toMenu();
+            Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+            dialog.setTitle("Fin du jeu");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Le hacker à gagné !!!");
+            dialog.showAndWait();
+            return;
         }
 
     }
