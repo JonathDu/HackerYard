@@ -17,4 +17,8 @@ public class FBI extends Joueur{
         super(nom, nombreT1, nombreT2, nombreT3, position, couleur);
     }
     
+        public FBI(String nom, Integer nombreT1, Integer nombreT2, Integer nombreT3, Color couleur) {
+        super(nom, nombreT1, nombreT2, nombreT3, couleur);
+    }
+    
 }

@@ -77,24 +77,23 @@ public class Graphe {
             int n1 = rand.nextInt(tableauN.size() - 1);
             int n2 = rand.nextInt(tableauN.size() - 1);
             if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) <= 9))){
-                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
+                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 3));
             }
             else {
                 m--;
             }
         }
         
-        //manque a placer les joueurs aleatoirement
+
         
-        
-        int n1 = rand.nextInt(tableauN.size() - 1);
-        int n2 = rand.nextInt(tableauN.size() - 1);
-        ArrayList<Joueur> posJoueurs = new ArrayList<>();
-        posJoueurs.add(new FBI("pat",2,2,2,tableauN.get(n1), Color.BLUE));
-        posJoueurs.add(new FBI("leo",2,2,2,tableauN.get(n2), Color.CHOCOLATE));
+//        int n1 = rand.nextInt(tableauN.size() - 1);
+//        int n2 = rand.nextInt(tableauN.size() - 1);
+//        ArrayList<Joueur> posJoueurs = new ArrayList<>();
+//        posJoueurs.add(new FBI("pat",2,2,2,tableauN.get(n1), Color.BLUE));
+//        posJoueurs.add(new FBI("leo",2,2,2,tableauN.get(n2), Color.CHOCOLATE));
         this.tableauNoeuds = tableauN;
         this.tableauArcs = tableauA;
-        this.tableauJoueurs = posJoueurs;
+//        this.tableauJoueurs = posJoueurs;
         System.out.println(listecase);
         System.out.println(tableauN);
         System.out.println(tableauA);
@@ -106,7 +105,8 @@ public class Graphe {
         for (int i = 0; i < nombrearcs; i++) {
             if (tableauArcs.get(i).n1 == n) {
                 listeSuivant.add(tableauArcs.get(i).n2);
-            } else if (tableauArcs.get(i).n2 == n) {
+            } 
+            if (tableauArcs.get(i).n2 == n) {
                 listeSuivant.add(tableauArcs.get(i).n1);
             }
         }
@@ -152,5 +152,16 @@ public class Graphe {
             }
         }
         return -1;
+    }
+    
+    public void addJoueur(ArrayList<Joueur> liste){
+        Random rand = new Random();
+        this.tableauJoueurs = liste;
+        ArrayList<Noeud> temp = (ArrayList<Noeud>)tableauNoeuds.clone();
+        for(Joueur j : tableauJoueurs){
+            int t = rand.nextInt(temp.size()-1);
+            j.position = temp.get(t);
+            temp.remove(t);
+        }
     }
 }

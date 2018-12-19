@@ -44,6 +44,7 @@ public class HandlerNoeud implements EventHandler<Event> {
             case 1:
                 if (jeu.getJoueurCourant().nombreT1 > 0) {
                     jeu.getJoueurCourant().nombreT1--;
+                    jeu.addCarteHacker(1);
                 } else {
                     System.out.println("Vous n'avez pas de carte permettant se déplacement");
                     return;
@@ -52,6 +53,7 @@ public class HandlerNoeud implements EventHandler<Event> {
             case 2:
                 if (jeu.getJoueurCourant().nombreT2 > 0) {
                     jeu.getJoueurCourant().nombreT2--;
+                    jeu.addCarteHacker(2);
                 } else {
                     System.out.println("Vous n'avez pas de carte permettant se déplacement");
                     return;
@@ -60,6 +62,7 @@ public class HandlerNoeud implements EventHandler<Event> {
             case 3:
                 if (jeu.getJoueurCourant().nombreT3 > 0) {
                     jeu.getJoueurCourant().nombreT3--;
+                    jeu.addCarteHacker(1);
                 } else {
                     System.out.println("Vous n'avez pas de carte permettant se déplacement");
                     return;

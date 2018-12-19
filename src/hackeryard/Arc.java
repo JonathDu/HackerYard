@@ -21,4 +21,8 @@ public class Arc {
         typeArc = type;
 
     }
+
+    Arc() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
  * @author Perso
  */
 public class Joueur {
+
     Integer nombreT1;
     Integer nombreT2;
     Integer nombreT3;
@@ -27,8 +28,16 @@ public class Joueur {
         this.nom = nom;
         this.couleur = couleur;
     }
-    
-    public String getNom(){
+
+    public Joueur(String nom, Integer nombreT1, Integer nombreT2, Integer nombreT3, Color couleur) {
+        this.nombreT1 = nombreT1;
+        this.nombreT2 = nombreT2;
+        this.nombreT3 = nombreT3;
+        this.nom = nom;
+        this.couleur = couleur;
+    }
+
+    public String getNom() {
         return this.nom;
     }
 }

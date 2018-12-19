@@ -41,18 +41,34 @@ public class InterfaceGraphe extends Parent {
                 if (grille[i][j] != null) {
                     InterfaceNoeud c = new InterfaceNoeud(i, j, grille[i][j]);
                     noeudToInterface.put(grille[i][j], c);
-                    if(g.estOccupee(grille[i][j])){
+                    if (g.estOccupee(grille[i][j])) {
                         c.ajouterJoueur(g.occupant(grille[i][j]).couleur);
                     }
                     noeuds.add(c);
                     for (Noeud n : g.GetSuivant(grille[i][j])) {
                         Line l = new Line(50 * i + 50, 50 * j + 50, 50 * n.posX + 50, 50 * n.posY + 50);
+                        switch (g.typeArc(n, grille[i][j])) {
+                            case 1:
+                                l.setStroke(Color.BISQUE);
+                                c.ajouterConnexion(1);
+                                break;
+                            case 2: 
+                                l.setStroke(Color.CHOCOLATE);
+                                c.ajouterConnexion(2);
+                                break;
+                            case 3:
+                                l.setStroke(Color.DARKRED);
+                                c.ajouterConnexion(3);
+                                break;
+                        }
+                        
                         root.getChildren().add(l);
                     }
                 }
             }
         }
         for (InterfaceNoeud c : noeuds) {
+            c.afficherConnexion();
             root.getChildren().add(c);
             c.addEventHandler(MouseEvent.MOUSE_CLICKED, new HandlerNoeud(c, jeu, controller, noeudToInterface));
 

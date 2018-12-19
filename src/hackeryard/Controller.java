@@ -27,8 +27,8 @@ public class Controller {
         scene.setRoot(new InterfaceTitre(this, scene));
     }
 
-    public void toPlateau(ArrayList<Joueur> liste, Graphe g) {
-        scene.setRoot(new InterfacePlateau(this, scene, new Jeu(liste, g, 5)));
+    public void toPlateau(ArrayList<Joueur> liste, Graphe g, Hacker hacker) {
+        scene.setRoot(new InterfacePlateau(this, scene, new Jeu(liste, g, 50, hacker)));
     }
 
     public void toJoueur() {
