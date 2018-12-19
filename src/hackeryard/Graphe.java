@@ -36,9 +36,13 @@ public class Graphe {
 
         for (int i = 0; i < nbn; i++) {
             int n = rand.nextInt(nbcase - 1);
-            if (!listecase.contains(n)) {
-                listecase.remove(n);
-                tableauN.add(new Noeud(n % taillel, n / taillel));
+            System.out.println(n);
+            if (listecase.contains(n)) {
+                listecase.removeIf(yo -> yo.intValue() == n);
+                tableauN.add(new Noeud(n % taillel, n/taillel));
+            }
+            else {
+                i--;
             }
         }
         for (int k = 0; k < nbn-3; k++) {
@@ -54,6 +58,26 @@ public class Graphe {
                 k--;
             }
         }
+        for (int l=0;l<nbn/2;l++){
+            int n1 = rand.nextInt(tableauN.size() - 1);
+            int n2 = rand.nextInt(tableauN.size() - 1);
+            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) <= 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) == 4)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX),2) == 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY),2) <= 4))){
+                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
+            }
+            else {
+                l--;
+            }
+            
+            
+            
+        }
+        
+        for (int m=0;m<nbn/3;m++){
+            
+        }
+        
+        
+        
         int n1 = rand.nextInt(tableauN.size() - 1);
         int n2 = rand.nextInt(tableauN.size() - 1);
         ArrayList<Joueur> posJoueurs = new ArrayList<>();
@@ -62,6 +86,9 @@ public class Graphe {
         this.tableauNoeuds = tableauN;
         this.tableauArcs = tableauA;
         this.tableauJoueurs = posJoueurs;
+        System.out.println(listecase);
+        System.out.println(tableauN);
+        System.out.println(tableauA);
     }
 
     public ArrayList<Noeud> GetSuivant(Noeud n) {
