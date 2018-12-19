@@ -6,6 +6,8 @@
 package hackeryard;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
@@ -55,7 +57,7 @@ public class InterfaceNoeud extends Parent {
         cercle.setStroke(Color.TRANSPARENT);
         isVisible = false;
     }
-    
+
     public void ajouterHacker() {
         hacker = new Rectangle(50 * posx + 47, 50 * posy + 47, 6, 6);
         hacker.setFill(Color.PURPLE);
@@ -87,39 +89,71 @@ public class InterfaceNoeud extends Parent {
     }
 
     public void afficherConnexion() {
+        connexion.removeIf(new Integer(0)::equals);
+        switch (connexion.size()) {
+            case 1:
+                Circle arc = new Circle(50 * posx + 50, 50 * posy + 50, 10);
+                arc.setFill(Couleur.getCouleurArc(connexion.get(0)));
+                g.getChildren().add(arc);
+                break;
+            case 2:
+                Arc arc1 = new Arc();
+                arc1.setCenterX(50 * posx + 50);
+                arc1.setCenterY(50 * posy + 50);
+                arc1.setRadiusX(10);
+                arc1.setRadiusY(10);
+                arc1.setStartAngle(90.0f);
+                arc1.setLength(180.0f);
+                arc1.setType(ArcType.ROUND);
+                arc1.setFill(Couleur.getCouleurArc(connexion.get(0)));
+                g.getChildren().add(arc1);
 
-        Arc arc3 = new Arc();
-        arc3.setCenterX(50 * posx + 50);
-        arc3.setCenterY(50 * posy + 50);
-        arc3.setRadiusX(10);
-        arc3.setRadiusY(10);
-        arc3.setStartAngle(90.0f);
-        arc3.setLength(120.0f);
-        arc3.setType(ArcType.ROUND);
-        arc3.setFill(Couleur.getCouleurArc(connexion.get(0)));
-        g.getChildren().add(arc3);
+                Arc arc2 = new Arc();
+                arc2.setCenterX(50 * posx + 50);
+                arc2.setCenterY(50 * posy + 50);
+                arc2.setRadiusX(10);
+                arc2.setRadiusY(10);
+                arc2.setStartAngle(270.0f);
+                arc2.setLength(180.0f);
+                arc2.setType(ArcType.ROUND);
+                arc2.setFill(Couleur.getCouleurArc(connexion.get(1)));
+                g.getChildren().add(arc2);
+                break;
+            case 3:
+                Arc arc3 = new Arc();
+                arc3.setCenterX(50 * posx + 50);
+                arc3.setCenterY(50 * posy + 50);
+                arc3.setRadiusX(10);
+                arc3.setRadiusY(10);
+                arc3.setStartAngle(90.0f);
+                arc3.setLength(120.0f);
+                arc3.setType(ArcType.ROUND);
+                arc3.setFill(Couleur.getCouleurArc(connexion.get(0)));
+                g.getChildren().add(arc3);
 
-        Arc arc4 = new Arc();
-        arc4.setCenterX(50 * posx + 50);
-        arc4.setCenterY(50 * posy + 50);
-        arc4.setRadiusX(10);
-        arc4.setRadiusY(10);
-        arc4.setStartAngle(210.0f);
-        arc4.setLength(120.0f);
-        arc4.setType(ArcType.ROUND);
-        arc4.setFill(Couleur.getCouleurArc(connexion.get(1)));
-        g.getChildren().add(arc4);
+                Arc arc4 = new Arc();
+                arc4.setCenterX(50 * posx + 50);
+                arc4.setCenterY(50 * posy + 50);
+                arc4.setRadiusX(10);
+                arc4.setRadiusY(10);
+                arc4.setStartAngle(210.0f);
+                arc4.setLength(120.0f);
+                arc4.setType(ArcType.ROUND);
+                arc4.setFill(Couleur.getCouleurArc(connexion.get(1)));
+                g.getChildren().add(arc4);
 
-        Arc arc5 = new Arc();
-        arc5.setCenterX(50 * posx + 50);
-        arc5.setCenterY(50 * posy + 50);
-        arc5.setRadiusX(10);
-        arc5.setRadiusY(10);
-        arc5.setStartAngle(330.0f);
-        arc5.setLength(120.0f);
-        arc5.setType(ArcType.ROUND);
-        arc5.setFill(Couleur.getCouleurArc(connexion.get(2)));
-        g.getChildren().add(arc5);
+                Arc arc5 = new Arc();
+                arc5.setCenterX(50 * posx + 50);
+                arc5.setCenterY(50 * posy + 50);
+                arc5.setRadiusX(10);
+                arc5.setRadiusY(10);
+                arc5.setStartAngle(330.0f);
+                arc5.setLength(120.0f);
+                arc5.setType(ArcType.ROUND);
+                arc5.setFill(Couleur.getCouleurArc(connexion.get(2)));
+                g.getChildren().add(arc5);
+                break;
+        }
 
         if (hacker != null) {
             hacker.toFront();
