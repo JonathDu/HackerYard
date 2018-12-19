@@ -97,18 +97,18 @@ public class InterfaceJoueur extends Interface {
         valider.setOnAction((t) -> {
             ArrayList<Joueur> liste = new ArrayList<>();
 
-            Noeud tableauN[] = new Noeud[4];
-            Arc tableauA[] = new Arc[6];
+            ArrayList<Noeud> tableauN = new ArrayList<>();
+            ArrayList<Arc> tableauA = new ArrayList<>();
             Integer[] posJoueurs = {1, 2, 3, 4};
-            Noeud n1 = new Noeud(1, 0, 0);
-            Noeud n2 = new Noeud(2, 0, 1);
-            Noeud n3 = new Noeud(3, 1, 0);
-            Noeud n4 = new Noeud(4, 1, 1);
-            Noeud n5 = new Noeud(5, 2, 0);
-            tableauN[0] = n1;
-            tableauN[1] = n2;
-            tableauN[2] = n3;
-            tableauN[3] = n4;
+            Noeud n1 = new Noeud(0, 0);
+            Noeud n2 = new Noeud(0, 1);
+            Noeud n3 = new Noeud(1, 0);
+            Noeud n4 = new Noeud(1, 1);
+            Noeud n5 = new Noeud(2, 0);
+            tableauN.add(n1);
+            tableauN.add(n2);
+            tableauN.add(n3);
+            tableauN.add(n4);
             Arc a1 = new Arc(n1, n2, 1);
             Arc a2 = new Arc(n3, n1, 1);
             Arc a3 = new Arc(n4, n1, 1);
@@ -116,12 +116,12 @@ public class InterfaceJoueur extends Interface {
             Arc a5 = new Arc(n3, n2, 1);
             Arc a6 = new Arc(n3, n4, 1);
 
-            tableauA[0] = a1;
-            tableauA[1] = a2;
-            tableauA[2] = a3;
-            tableauA[3] = a4;
-            tableauA[4] = a5;
-            tableauA[5] = a6;
+            tableauA.add(a1);
+            tableauA.add(a2);
+            tableauA.add(a3);
+            tableauA.add(a4);
+            tableauA.add(a5);
+            tableauA.add(a6);
 
             ArrayList<Color> couleur = new ArrayList<>();
             couleur.add(Color.PURPLE);
@@ -138,7 +138,9 @@ public class InterfaceJoueur extends Interface {
                 i++;
             }
 
-            Graphe g1 = new Graphe(tableauN, tableauA, liste);
+            //Graphe g1 = new Graphe(tableauN, tableauA, liste);
+            Graphe g1 = new Graphe(10,4,5);
+            
             controller.toPlateau(liste, g1);
 
         });

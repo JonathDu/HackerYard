@@ -10,17 +10,11 @@ package hackeryard;
  * @author Perso
  */
 public class Noeud {
-
-    Integer NoNoeud;
     int posX;
     int posY;
 
-    public Noeud(Integer NoNoeud) {
-        this.NoNoeud = NoNoeud;
-    }
 
-    public Noeud(Integer NoNoeud, int posX, int posY) {
-        this.NoNoeud = NoNoeud;
+    public Noeud(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }

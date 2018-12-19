@@ -18,14 +18,13 @@ import javafx.scene.shape.Rectangle;
 public class InterfaceNoeud extends Parent {
 
     Circle cercle;
-    int type;
     int posx;
     int posy;
     Group g;
     Rectangle joueur;
     Noeud noeud;
 
-    public InterfaceNoeud(int type, int posx, int posy, Noeud n) {
+    public InterfaceNoeud(int posx, int posy, Noeud n) {
         this.posx = posx;
         this.posy = posy;
         this.noeud = n;

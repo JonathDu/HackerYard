@@ -30,7 +30,7 @@ public class InterfaceGraphe extends Parent {
         Graphe g = jeu.getGraphe();
         noeuds = new ArrayList<>();
         noeudToInterface = new HashMap<>();
-        Noeud grille[][] = new Noeud[g.tableauNoeuds.length][g.tableauNoeuds.length];
+        Noeud grille[][] = new Noeud[g.tableauNoeuds.size()][g.tableauNoeuds.size()];
 
         for (Noeud n : g.tableauNoeuds) {
             grille[n.posX][n.posY] = n;
@@ -39,7 +39,7 @@ public class InterfaceGraphe extends Parent {
         for (int i = 0; i < grille.length; i++) {
             for (int j = 0; j < grille[i].length; j++) {
                 if (grille[i][j] != null) {
-                    InterfaceNoeud c = new InterfaceNoeud(grille[i][j].NoNoeud, i, j, grille[i][j]);
+                    InterfaceNoeud c = new InterfaceNoeud(i, j, grille[i][j]);
                     noeudToInterface.put(grille[i][j], c);
                     if(g.estOccupee(grille[i][j])){
                         c.ajouterJoueur(g.occupant(grille[i][j]).couleur);
@@ -55,7 +55,7 @@ public class InterfaceGraphe extends Parent {
         for (InterfaceNoeud c : noeuds) {
             root.getChildren().add(c);
             c.addEventHandler(MouseEvent.MOUSE_CLICKED, new HandlerNoeud(c, jeu, controller, noeudToInterface));
-            
+
         }
         this.getChildren().add(root);
     }
