@@ -8,8 +8,10 @@ package hackeryard;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 /**
  * Premiere interface, ne contient qu'un bouton pour passer a l'ecran de
@@ -23,6 +25,8 @@ public class InterfaceTitre extends Interface {
     private Button jouer;
     private BorderPane pane;
     private HBox centre;
+    private HBox centreTitre;
+    private Label titre;
 
     public InterfaceTitre(Controller controller, Scene scene) {
         super(controller, scene);
@@ -41,9 +45,18 @@ public class InterfaceTitre extends Interface {
 
         centre = new HBox();
         centre.setAlignment(Pos.CENTER);
+        
+        centreTitre = new HBox();
+        centreTitre.setAlignment(Pos.CENTER);
 
         jouer = new Button("Jouer !!!");
+        titre = new Label("HackerYard !!!!");
+        titre.setFont(Font.font(30));
+        
         centre.getChildren().add(jouer);
+        centreTitre.getChildren().add(titre);
+        pane.setTop(centreTitre);
+        
         pane.setCenter(centre);
 
         this.getChildren().add(pane);

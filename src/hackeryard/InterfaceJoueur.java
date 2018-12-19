@@ -6,6 +6,7 @@
 package hackeryard;
 
 import java.util.ArrayList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -64,7 +65,7 @@ public class InterfaceJoueur extends Interface {
         centre.setAlignment(Pos.CENTER);
 
         valider = new Button("Valider");
-
+        valider.setDefaultButton(true);
         misterXLabel = new Label("Mister X");
         joueur = new ArrayList<>();
 
@@ -77,6 +78,7 @@ public class InterfaceJoueur extends Interface {
         t.getChildren().add(centre);
         pane.setCenter(t);
         bas.getChildren().add(valider);
+        bas.setPadding(new Insets(30));
         pane.setBottom(bas);
         this.getChildren().add(pane);
 

@@ -194,7 +194,7 @@ public class Graphe {
     }
 
     /**
-     * Ajoute une liste de joueur au graphe
+     * Ajoute une liste de joueur au graphe et leur assigne un noeud aléatoirement
      *
      * @param liste
      */
