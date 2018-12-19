@@ -5,15 +5,12 @@
  */
 package hackeryard;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 /**
@@ -41,7 +38,7 @@ public class InterfaceGraphe extends Parent {
                 if (grille[i][j] != null) {
                     InterfaceNoeud c = new InterfaceNoeud(i, j, grille[i][j]);
                     noeudToInterface.put(grille[i][j], c);
-                    if (g.estOccupee(grille[i][j])) {
+                    if (g.estOccupee(grille[i][j]) && g.occupant(grille[i][j]).couleur != Color.PURPLE) {;
                         c.ajouterJoueur(g.occupant(grille[i][j]).couleur);
                     }
                     noeuds.add(c);
@@ -74,6 +71,22 @@ public class InterfaceGraphe extends Parent {
 
         }
         this.getChildren().add(root);
+    }
+    
+    /**
+     * Affiche la position du joueur j
+     * @param j 
+     */
+    public void afficherJoueur(Joueur j){
+        noeudToInterface.get(j.position).ajouterJoueur(j.couleur);
+    }
+    
+    /**
+     * Cache la position du joueur j
+     * @param j 
+     */
+    public void cacherJoueur(Joueur j){
+        noeudToInterface.get(j.position).supprimerJoueur();
     }
 
 }

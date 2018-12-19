@@ -18,7 +18,9 @@ public class Jeu {
     private int joueurCourant;
     private final Graphe graphe;
     private int nbTour;
+    private int nbTourHacker;
     private final int tourMax;
+    private Noeud posHacker;
 
     public Jeu(ArrayList<Joueur> joueurs, Graphe graphe, int tourMax, Hacker hacker) {
         this.joueurs = joueurs;
@@ -26,7 +28,9 @@ public class Jeu {
         this.tourMax = tourMax;
         this.hacker = hacker;
         joueurCourant = 0;
+        posHacker = hacker.position;
         nbTour = 0;
+        nbTourHacker = 1;
     }
 
     public ArrayList<Joueur> getJoueurs() {
@@ -41,11 +45,13 @@ public class Jeu {
         return nbTour;
     }
 
+    
+    /**
+     * Change de joueur
+     */
     public void tourSuivant() {
         nbTour++;
-        if (nbTour >= tourMax) {
 
-        }
         if (joueurCourant < joueurs.size() - 1) {
             joueurCourant++;
         } else {
@@ -53,6 +59,9 @@ public class Jeu {
         }
         if(!verifJoueurPeutJouer()){
             tourSuivant();
+        }
+        if(tourHacker()){
+            nbTourHacker++;
         }
     }
 
@@ -64,6 +73,22 @@ public class Jeu {
         return tourMax - nbTour;
     }
 
+    
+    /**
+     * Renvoie si c'est au tour du hacker de jouer
+     * @return 
+     */
+    public boolean tourHacker(){
+        if(hacker == getJoueurCourant()){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Ajoute la carte type au hacker
+     * @param type 
+     */
     public void addCarteHacker(int type) {
         switch (type) {
             case 1:
@@ -77,7 +102,11 @@ public class Jeu {
                 break;
         }
     }
-
+    
+    /**
+     * Verifie que le joueur courant possede les cartes necessaires afin de pouvoir se deplacer
+     * @return 
+     */
     public boolean verifJoueurPeutJouer() {
         for (Noeud n : graphe.GetSuivant(getJoueurCourant().position)) {
             int type = graphe.typeArc(n, getJoueurCourant().position);
@@ -102,4 +131,36 @@ public class Jeu {
         }
         return true;
     }
+
+    public void setPosHacker(Noeud posHacker) {
+        this.posHacker = posHacker;
+    }
+
+    
+    /**
+     * Retourne la derniere position connue du hacker
+     * @return 
+     */
+    public Noeud getPosHacker() {
+        return posHacker;
+    }
+    
+    /**
+     * Retourne le joueur hacker
+     * @return 
+     */
+    public Hacker getHacker(){
+        return hacker;
+    }
+    
+    
+    /**
+     * Renvoie le nombre de tour joué par le hacker
+     * @return 
+     */
+    public int getNbTourHacker(){
+        return nbTourHacker;
+    }
+    
+    
 }

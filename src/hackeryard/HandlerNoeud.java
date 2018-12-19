@@ -9,7 +9,6 @@ import java.util.HashMap;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -39,7 +38,7 @@ public class HandlerNoeud implements EventHandler<Event> {
             System.out.println("Auncun chemin n'existe entre les deux points");
             return;
         }
-        //Vérification que le joueur peut réaliser le mouvement
+        //Vérification que le hacker peut réaliser le mouvement
         switch (jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position)) {
             case 1:
                 if (jeu.getJoueurCourant().nombreT1 > 0) {
@@ -62,7 +61,7 @@ public class HandlerNoeud implements EventHandler<Event> {
             case 3:
                 if (jeu.getJoueurCourant().nombreT3 > 0) {
                     jeu.getJoueurCourant().nombreT3--;
-                    jeu.addCarteHacker(1);
+                    jeu.addCarteHacker(3);
                 } else {
                     System.out.println("Vous n'avez pas de carte permettant se déplacement");
                     return;
@@ -90,10 +89,14 @@ public class HandlerNoeud implements EventHandler<Event> {
         }
 
         noeudToInterface.get(jeu.getJoueurCourant().position).supprimerJoueur();
-
+        if (!jeu.tourHacker()) {
+            noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
+        }
+        else{
+            ((InterfacePlateau)noeudG.getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
+        }
+        gestionPosHacker();
         jeu.getJoueurCourant().position = noeud;
-        noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
-        //System.out.println("Le joueur " + jeu.getJoueurCourant().getNom() + " est maintenant sur le noeud " + noeud.NoNoeud);
         jeu.tourSuivant();
 
         ((InterfacePlateau) controller.getScene().getRoot()).majGraphique();
@@ -107,6 +110,14 @@ public class HandlerNoeud implements EventHandler<Event> {
             return;
         }
 
+    }
+    
+    private void gestionPosHacker(){
+        if(jeu.getNbTourHacker()%3 == 0 && jeu.tourHacker()){
+            noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();
+            jeu.setPosHacker(noeud);
+            noeudToInterface.get(noeud).ajouterHacker();
+        }
     }
 
 }

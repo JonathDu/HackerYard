@@ -25,7 +25,8 @@ public class InterfaceNoeud extends Parent {
     int posx;
     int posy;
     Group g;
-    Rectangle joueur;
+    Rectangle hacker;
+    public boolean isVisible;
     Noeud noeud;
     ArrayList<Integer> connexion;
 
@@ -40,21 +41,31 @@ public class InterfaceNoeud extends Parent {
 
         g = new Group();
         cercle = new Circle(50 * posx + 50, 50 * posy + 50, 20);
-
+        cercle.setStrokeWidth(4);
         g.getChildren().add(cercle);
         this.getChildren().add(g);
     }
 
     public void ajouterJoueur(Color couleurJoueur) {
-        joueur = new Rectangle(50 * posx + 47, 50 * posy + 47, 6, 6);
-        joueur.setFill(couleurJoueur);
-
-        g.getChildren().add(joueur);
+        cercle.setStroke(couleurJoueur);
+        isVisible = true;
     }
 
     public void supprimerJoueur() {
-        if (joueur != null) {
-            g.getChildren().remove(joueur);
+        cercle.setStroke(Color.TRANSPARENT);
+        isVisible = false;
+    }
+    
+    public void ajouterHacker() {
+        hacker = new Rectangle(50 * posx + 47, 50 * posy + 47, 6, 6);
+        hacker.setFill(Color.PURPLE);
+
+        g.getChildren().add(hacker);
+    }
+
+    public void supprimerHacker() {
+        if (hacker != null) {
+            g.getChildren().remove(hacker);
 
         }
     }
@@ -110,8 +121,8 @@ public class InterfaceNoeud extends Parent {
         arc5.setFill(Couleur.getCouleurArc(connexion.get(2)));
         g.getChildren().add(arc5);
 
-        if (joueur != null) {
-            joueur.toFront();
+        if (hacker != null) {
+            hacker.toFront();
         }
     }
 }
