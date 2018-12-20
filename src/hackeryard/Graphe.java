@@ -54,18 +54,16 @@ public class Graphe {
         }
         Random rand = new Random();
 
-        for (int i = 0; i < nbn; i++) {
+        while (tableauNoeuds.size()!= nbn) {
             int n = rand.nextInt(nbcase - 1);
             System.out.println(n);
             if (listecase.contains(n)) {
                 listecase.removeIf(yo -> yo.intValue() == n);
                 tableauNoeuds.add(new Noeud(n % taillel, n / taillel));
-            } else {
-                i--;
             }
         }
         int v = 0;
-        while ((!isConnexe() || !verifMinDeg()) && v != 500) {
+        while ((!isConnexe() || !verifMinDeg()) && v != 10) {
             for (int k = 0; k < nbn - 3; k++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
