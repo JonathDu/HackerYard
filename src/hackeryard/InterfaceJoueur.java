@@ -133,5 +133,8 @@ public class InterfaceJoueur extends Interface {
         }
         centre.getChildren().add(addPlayer);
     }
+    
+    
+
 
 }

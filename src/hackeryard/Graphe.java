@@ -65,7 +65,7 @@ public class Graphe {
             }
         }
         int v = 0;
-        while (!isConnexe() && v!=500) {
+        while ((!isConnexe() || !verifMinDeg()) && v != 500) {
             for (int k = 0; k < nbn - 3; k++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
@@ -129,6 +129,7 @@ public class Graphe {
         //System.out.println(tableauN);
         //System.out.println(tableauA);
         System.out.println(isConnexe());
+        System.out.println(verifMinDeg());
     }
 
     /**
@@ -259,5 +260,18 @@ public class Graphe {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Renvoie false si un noeud possede moins de deux suivant
+     * @return 
+     */
+    private boolean verifMinDeg() {
+        for (Noeud n : tableauNoeuds) {
+            if(GetSuivant(n).size() <= 2){
+                return false;
+            }
+        }
+        return true;
     }
 }
