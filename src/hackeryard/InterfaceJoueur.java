@@ -98,6 +98,7 @@ public class InterfaceJoueur extends Interface {
         valider.setOnAction((t) -> {
             ArrayList<Joueur> liste = new ArrayList<>();
 
+            //Liste des couleurs de chasue joueurs
             ArrayList<Color> couleur = new ArrayList<>();
             couleur.add(Color.PURPLE);
             couleur.add(Color.YELLOW);
@@ -106,13 +107,16 @@ public class InterfaceJoueur extends Interface {
             couleur.add(Color.GREEN);
             couleur.add(Color.RED);
 
+            //Création du hackeur
             Hacker h = new Hacker(4, 3, 3, 2, joueur.size(), 3, couleur.get(0));
             liste.add(h);
             int i = 1;
+            //Ajout de tous les joueurs dans la liste
             for (TextField e : joueur) {
                 liste.add(new FBI(e.getText(), 10, 8, 4, couleur.get(i)));
                 i++;
             }
+            //Si seulement deux joueurs sont présent, on en rajoute deux
             if (joueur.size() == 2) {
                 for (TextField e : joueur) {
                     liste.add(new FBI(e.getText() + " 2", 10, 8, 4, couleur.get(i)));
@@ -120,8 +124,11 @@ public class InterfaceJoueur extends Interface {
                 }
             }
 
+            //Création du graphe
             Graphe g1 = new Graphe(140, 14, 20);
+            //Ajout des joueurs au graphe
             g1.addJoueur(liste);
+            //Lancement du jeu
             controller.toPlateau(liste, g1, h);
 
         });

@@ -54,6 +54,7 @@ public class Graphe {
         }
         Random rand = new Random();
 
+        //Création des noeuds
         while (tableauNoeuds.size()!= nbn) {
             int n = rand.nextInt(nbcase - 1);
             System.out.println(n);
@@ -63,7 +64,9 @@ public class Graphe {
             }
         }
         int v = 0;
+        //On continue la génération tant que le graphe n'est pas connexe, ou n'a pas un nombre suffisant de degré par noeud
         while ((!isConnexe() || !verifMinDeg()) && v != 5) {
+            //Génération des arcs de type 1
             for (int k = 0; k < nbn - 3; k++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
@@ -88,6 +91,7 @@ public class Graphe {
 
             }
 
+            //Génération des arcs de type 2
             for (int m = 0; m < nbn/3; m++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
@@ -98,6 +102,8 @@ public class Graphe {
                 }
             }
 
+            
+            //Génération des arcs de type 3
             for (int o = 0; o < tableauNoeuds.size(); o++) {
                 Boolean isRelie = false;
                 for (int p = 0; p < tableauArcs.size(); p++) {
@@ -140,12 +146,6 @@ public class Graphe {
 
     }
 
-    /**
-     * Renvoie sous forme d'une liste d'entier les suivants d'un noeud
-     *
-     * @param n
-     * @return
-     */
 
     /**
      * Renvoie si le noeud n est occupé par un joueur
