@@ -22,6 +22,7 @@ public class InterfaceGraphe extends Parent {
 
     private final ArrayList<InterfaceNoeud> noeuds;
     private HashMap<Noeud, InterfaceNoeud> noeudToInterface;
+    int CONSTANTE_TAILLE = 65;
 
     public InterfaceGraphe(Controller controller, Jeu jeu) {
         Group root = new Group();
@@ -44,7 +45,7 @@ public class InterfaceGraphe extends Parent {
                     }
                     noeuds.add(c);
                     for (Noeud n : g.GetSuivant(grille[i][j])) {
-                        Line l = new Line(50 * i + 50, 50 * j + 50, 50 * n.posX + 50, 50 * n.posY + 50);
+                        Line l = new Line(CONSTANTE_TAILLE * i + CONSTANTE_TAILLE, CONSTANTE_TAILLE * j + CONSTANTE_TAILLE, CONSTANTE_TAILLE * n.posX + CONSTANTE_TAILLE, CONSTANTE_TAILLE * n.posY + CONSTANTE_TAILLE);
                         switch (g.typeArc(n, grille[i][j])) {
                             case 1:
                                 l.setStroke(Color.BISQUE);

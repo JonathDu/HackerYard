@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,7 +31,10 @@ public class InterfacePlateau extends Interface {
     VBox left;
     VBox right;
     HBox centre;
+    ScrollPane scroll;
+
     InterfaceGraphe graphe;
+
     Jeu jeu;
 
     /**
@@ -50,23 +54,27 @@ public class InterfacePlateau extends Interface {
      * Mets en place les éléments graphique sur l'Interface
      */
     private void initaliseGraphique() {
-        setLeft();
-        right = new VBox();
-        right.setPadding(new Insets(30));
-        graphe = new InterfaceGraphe(controller, jeu);
-        centre = new HBox();
-        centre.setAlignment(Pos.CENTER);
         pane = new BorderPane();
         pane.prefHeightProperty().bind(this.scene.heightProperty());
         pane.prefWidthProperty().bind(this.scene.widthProperty());
 
-        pane.setLeft(left);
-        centre.getChildren().add(graphe);
-        pane.setCenter(centre);
-        pane.setRight(right);
+        setLeft();
 
+        right = new VBox();
+        right.setPadding(new Insets(30));
         Label historique = new Label("Historique de Mister X");
         right.getChildren().add(historique);
+
+        centre = new HBox();
+        scroll = new ScrollPane();
+        graphe = new InterfaceGraphe(controller, jeu);
+        centre.setAlignment(Pos.CENTER);
+        scroll.setContent(graphe);
+        centre.getChildren().add(scroll);
+
+        pane.setLeft(left);
+        pane.setCenter(centre);
+        pane.setRight(right);
 
         this.getChildren().add(pane);
     }
@@ -81,7 +89,8 @@ public class InterfacePlateau extends Interface {
     }
 
     /**
-     * Initialise les elements du panneau gauche (joueur courant et nombre de carte)
+     * Initialise les elements du panneau gauche (joueur courant et nombre de
+     * carte)
      */
     private void setLeft() {
         left = new VBox();

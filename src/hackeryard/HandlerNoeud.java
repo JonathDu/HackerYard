@@ -98,7 +98,7 @@ public class HandlerNoeud implements EventHandler<Event> {
         if (!jeu.tourHacker()) {
             noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
         } else {
-            ((InterfacePlateau) noeudG.getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
+            ((InterfacePlateau) noeudG.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
         }
         gestionPosHacker();
         jeu.getJoueurCourant().position = noeud;

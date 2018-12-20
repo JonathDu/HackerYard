@@ -6,7 +6,9 @@
 package hackeryard;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -115,19 +117,8 @@ public class Graphe {
             System.out.println(v);
             v++;
         }
-        //manque a placer les joueurs aleatoirement
-//
-//        int n1 = rand.nextInt(tableauN.size() - 1);
-//        int n2 = rand.nextInt(tableauN.size() - 1);
-//        ArrayList<Joueur> posJoueurs = new ArrayList<>();
-//        posJoueurs.add(new FBI("pat", 2, 2, 2, tableauN.get(n1)));
-//        posJoueurs.add(new FBI("leo", 2, 2, 2, tableauN.get(n2)));
-        //this.tableauNoeuds = tableauN;
-        //this.tableauArcs = tableauA;
-//        this.tableauJoueurs = posJoueurs;
+
         System.out.println(listecase);
-        //System.out.println(tableauN);
-        //System.out.println(tableauA);
         System.out.println(isConnexe());
         System.out.println(verifMinDeg());
     }
@@ -266,12 +257,25 @@ public class Graphe {
      * Renvoie false si un noeud possede moins de deux suivant
      * @return 
      */
-    private boolean verifMinDeg() {
+    public boolean verifMinDeg() {
         for (Noeud n : tableauNoeuds) {
-            if(GetSuivant(n).size() <= 2){
+            ArrayList<Noeud> temp = removeMultiple(this.GetSuivant(n));
+            if(temp.size() < 2){
                 return false;
             }
         }
         return true;
+    }
+    
+    /**
+     * Renvoie une liste de noeud vider des doublons
+     * @param liste
+     * @return 
+     */
+    private ArrayList<Noeud> removeMultiple(ArrayList<Noeud> liste){
+        Set<Noeud> remove = new LinkedHashSet<Noeud>(liste);
+        liste.clear();
+        liste.addAll(remove);
+        return liste;
     }
 }

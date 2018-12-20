@@ -30,6 +30,7 @@ public class InterfaceNoeud extends Parent {
     public boolean isVisible;
     Noeud noeud;
     ArrayList<Integer> connexion;
+    int CONSTANTE_TAILLE = 65;
 
     public InterfaceNoeud(int posx, int posy, Noeud n) {
         this.posx = posx;
@@ -41,7 +42,7 @@ public class InterfaceNoeud extends Parent {
         connexion.add(0);
 
         g = new Group();
-        cercle = new Circle(50 * posx + 50, 50 * posy + 50, 20);
+        cercle = new Circle(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE, CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE, 20);
         cercle.setStrokeWidth(4);
         g.getChildren().add(cercle);
         this.getChildren().add(g);
@@ -69,7 +70,7 @@ public class InterfaceNoeud extends Parent {
      * Ajoute le hacker sur le noeud
      */
     public void ajouterHacker() {
-        hacker = new Rectangle(50 * posx + 47, 50 * posy + 47, 6, 6);
+        hacker = new Rectangle(CONSTANTE_TAILLE * posx + 47, CONSTANTE_TAILLE * posy + 47, 6, 6);
         hacker.setFill(Color.PURPLE);
 
         g.getChildren().add(hacker);
@@ -112,14 +113,14 @@ public class InterfaceNoeud extends Parent {
         connexion.removeIf(new Integer(0)::equals);
         switch (connexion.size()) {
             case 1:
-                Circle arc = new Circle(50 * posx + 50, 50 * posy + 50, 10);
+                Circle arc = new Circle(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE, CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE, 10);
                 arc.setFill(Couleur.getCouleurArc(connexion.get(0)));
                 g.getChildren().add(arc);
                 break;
             case 2:
                 Arc arc1 = new Arc();
-                arc1.setCenterX(50 * posx + 50);
-                arc1.setCenterY(50 * posy + 50);
+                arc1.setCenterX(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE);
+                arc1.setCenterY(CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE);
                 arc1.setRadiusX(10);
                 arc1.setRadiusY(10);
                 arc1.setStartAngle(90.0f);
@@ -129,8 +130,8 @@ public class InterfaceNoeud extends Parent {
                 g.getChildren().add(arc1);
 
                 Arc arc2 = new Arc();
-                arc2.setCenterX(50 * posx + 50);
-                arc2.setCenterY(50 * posy + 50);
+                arc2.setCenterX(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE);
+                arc2.setCenterY(CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE);
                 arc2.setRadiusX(10);
                 arc2.setRadiusY(10);
                 arc2.setStartAngle(270.0f);
@@ -141,8 +142,8 @@ public class InterfaceNoeud extends Parent {
                 break;
             case 3:
                 Arc arc3 = new Arc();
-                arc3.setCenterX(50 * posx + 50);
-                arc3.setCenterY(50 * posy + 50);
+                arc3.setCenterX(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE);
+                arc3.setCenterY(CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE);
                 arc3.setRadiusX(10);
                 arc3.setRadiusY(10);
                 arc3.setStartAngle(90.0f);
@@ -152,8 +153,8 @@ public class InterfaceNoeud extends Parent {
                 g.getChildren().add(arc3);
 
                 Arc arc4 = new Arc();
-                arc4.setCenterX(50 * posx + 50);
-                arc4.setCenterY(50 * posy + 50);
+                arc4.setCenterX(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE);
+                arc4.setCenterY(CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE);
                 arc4.setRadiusX(10);
                 arc4.setRadiusY(10);
                 arc4.setStartAngle(210.0f);
@@ -163,8 +164,8 @@ public class InterfaceNoeud extends Parent {
                 g.getChildren().add(arc4);
 
                 Arc arc5 = new Arc();
-                arc5.setCenterX(50 * posx + 50);
-                arc5.setCenterY(50 * posy + 50);
+                arc5.setCenterX(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE);
+                arc5.setCenterY(CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE);
                 arc5.setRadiusX(10);
                 arc5.setRadiusY(10);
                 arc5.setStartAngle(330.0f);
@@ -179,4 +180,5 @@ public class InterfaceNoeud extends Parent {
             hacker.toFront();
         }
     }
+   
 }
