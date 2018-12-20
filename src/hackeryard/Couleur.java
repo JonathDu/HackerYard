@@ -19,7 +19,7 @@ public class Couleur {
             case 0:
                 return Color.BLACK;
             case 1:
-                return Color.BISQUE;
+                return Color.CYAN;
 
             case 2:
                 return Color.CHOCOLATE;

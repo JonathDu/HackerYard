@@ -37,12 +37,8 @@ public class HackerYard extends Application {
      */
     public static void main(String[] args) {
 
-        Graphe g1 = new Graphe(10, 4, 5);
         launch(args);
 
     }
 
-    public Noeud[] listeNoeudsAuto(Integer t) {
-        return null;
-    }
 }

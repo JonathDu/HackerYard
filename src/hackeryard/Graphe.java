@@ -63,7 +63,7 @@ public class Graphe {
             }
         }
         int v = 0;
-        while ((!isConnexe() || !verifMinDeg()) && v != 10) {
+        while ((!isConnexe() || !verifMinDeg()) && v != 5) {
             for (int k = 0; k < nbn - 3; k++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
@@ -77,7 +77,7 @@ public class Graphe {
                 }
             }
 
-            for (int l = 0; l < nbn / 2; l++) {
+            for (int l = 0; l < nbn/2; l++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
                 if (((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) <= 4) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 4)) || ((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) == 4) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) <= 4))) {
@@ -88,11 +88,11 @@ public class Graphe {
 
             }
 
-            for (int m = 0; m < nbn / 3; m++) {
+            for (int m = 0; m < nbn/3; m++) {
                 int n1 = rand.nextInt(tableauNoeuds.size() - 1);
                 int n2 = rand.nextInt(tableauNoeuds.size() - 1);
                 if (((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) <= 9) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 9)) || ((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) == 9) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) <= 9))) {
-                    tableauArcs.add(new Arc(tableauNoeuds.get(n1), tableauNoeuds.get(n2), 2));
+                    tableauArcs.add(new Arc(tableauNoeuds.get(n1), tableauNoeuds.get(n2), 3));
                 } else {
                     m--;
                 }
@@ -146,18 +146,6 @@ public class Graphe {
      * @param n
      * @return
      */
-    public ArrayList<Integer> GetSuivanti(Noeud n) {
-        ArrayList<Integer> listeSuivant = new ArrayList<>();
-        int nombrearcs = tableauArcs.size();
-        for (int i = 0; i < nombrearcs; i++) {
-            if (tableauArcs.get(i).n1 == n) {
-                listeSuivant.add(tableauArcs.get(i).n2.posX + (tableauArcs.get(i).n2.posY) * 4);
-            } else if (tableauArcs.get(i).n2 == n) {
-                listeSuivant.add(tableauArcs.get(i).n1.posX + (tableauArcs.get(i).n1.posY) * 4);
-            }
-        }
-        return listeSuivant;
-    }
 
     /**
      * Renvoie si le noeud n est occupé par un joueur
