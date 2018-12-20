@@ -152,6 +152,35 @@ public class Jeu {
         return true;
     }
 
+        /**
+     * Verifie que le joueur passer en parametre possede les cartes necessaires afin de pouvoir se deplacer
+     * @param j
+     * @return 
+     */
+    public boolean verifJoueurPeutJouer(Joueur j) {
+        for (Noeud n : graphe.GetSuivant(j.position)) {
+            int type = graphe.typeArc(n, j.position);
+            switch (type) {
+                case 1:
+                    if (j.nombreT1 == 0) {
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (j.nombreT2 == 0) {
+                        return false;
+                    }
+                    break;
+                case 3:
+                    if (j.nombreT3 == 0) {
+                        return false;
+                    }
+                    break;
+            }
+
+        }
+        return true;
+    }
     /**
      * Set la derniere position connue du hacker
      * @param posHacker 
@@ -186,5 +215,13 @@ public class Jeu {
         return nbTourHacker;
     }
     
+    public boolean personneBouge(){
+        for(Joueur j : joueurs){
+            if(this.verifJoueurPeutJouer(j) && j != hacker){
+                return false;
+            }
+        }
+        return true;
+    }
     
 }

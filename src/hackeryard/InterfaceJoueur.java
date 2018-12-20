@@ -110,7 +110,7 @@ public class InterfaceJoueur extends Interface {
             liste.add(h);
             int i = 1;
             for (TextField e : joueur) {
-                liste.add(new FBI(e.getText(), 100, 100, 100, couleur.get(i)));
+                liste.add(new FBI(e.getText(), 0, 0, 0, couleur.get(i)));
                 i++;
             }
 

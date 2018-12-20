@@ -114,11 +114,20 @@ public class HandlerNoeud implements EventHandler<Event> {
             dialog.showAndWait();
             return;
         }
+        if (jeu.personneBouge()) {
+            controller.toMenu();
+            Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+            dialog.setTitle("Fin du jeu");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Le hacker à gagné !!!");
+            dialog.showAndWait();
+            return;
+        }
 
     }
 
     private void gestionPosHacker() {
-        if (jeu.getNbTourHacker() % 3 == 0 && jeu.tourHacker()) {
+        if ((jeu.getNbTourHacker() == 0 || jeu.getNbTour() == 3 || jeu.getNbTour() == 8 || jeu.getNbTour() == 13 || jeu.getNbTour() == 18) && jeu.tourHacker()) {
             noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();
             jeu.setPosHacker(noeud);
             noeudToInterface.get(noeud).ajouterHacker();
