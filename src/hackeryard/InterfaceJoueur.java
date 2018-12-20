@@ -120,7 +120,7 @@ public class InterfaceJoueur extends Interface {
                 }
             }
 
-            Graphe g1 = new Graphe(50, 10, 20);
+            Graphe g1 = new Graphe(100, 10, 20);
             g1.addJoueur(liste);
             controller.toPlateau(liste, g1, h);
 

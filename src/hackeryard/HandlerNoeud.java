@@ -109,18 +109,23 @@ public class HandlerNoeud implements EventHandler<Event> {
                 return;
             }
         }
-
+        
+        //Suppression de l'affichage du joueur sur le noeud
         noeudToInterface.get(jeu.getJoueurCourant().position).supprimerJoueur();
+        //Ajout du nouveau joueur sur le nouveau noeud, si ce n'est pas le hacker
         if (!jeu.tourHacker()) {
             noeudG.ajouterJoueur(jeu.getJoueurCourant().couleur);
         } else {
+            //Ajout du deplacement a l'historique
             ((InterfacePlateau) noeudG.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent()).addDeplacementX(jeu.getGraphe().typeArc(noeud, jeu.getJoueurCourant().position));
         }
         gestionPosHacker();
         jeu.getJoueurCourant().position = noeud;
         jeu.tourSuivant();
 
+        //Mise a jout de l'affichage a gauche(joueur courant...)
         ((InterfacePlateau) controller.getScene().getRoot()).majGraphique();
+        //Gestion des fin de parties
         if (jeu.getTourRestant() <= 0) {
             controller.toMenu();
             Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
@@ -142,6 +147,9 @@ public class HandlerNoeud implements EventHandler<Event> {
 
     }
 
+    /**
+     * Ajout de la position du hacker a la classe principale, si c'est un des tours ou il doit etre visible
+     */
     private void gestionPosHacker() {
         if ((jeu.getNbTour() == 3 || jeu.getNbTour() == 8 || jeu.getNbTour() == 13 || jeu.getNbTour() == 18) && jeu.tourHacker()) {
             noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();

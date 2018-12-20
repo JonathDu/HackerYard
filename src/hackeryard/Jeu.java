@@ -69,7 +69,7 @@ public class Jeu {
         } else {
             joueurCourant = 0;
         }
-        if(!verifJoueurPeutJouer()){
+        if(!verifJoueurCourantPeutJouer()){
             tourSuivant();
         }
         if(tourHacker()){
@@ -127,7 +127,7 @@ public class Jeu {
      * Verifie que le joueur courant possede les cartes necessaires afin de pouvoir se deplacer
      * @return 
      */
-    public boolean verifJoueurPeutJouer() {
+    public boolean verifJoueurCourantPeutJouer() {
         for (Noeud n : graphe.GetSuivant(getJoueurCourant().position)) {
             int type = graphe.typeArc(n, getJoueurCourant().position);
             switch (type) {
@@ -215,6 +215,10 @@ public class Jeu {
         return nbTourHacker;
     }
     
+    /**
+     * Renvoie vrai si aucun des joueurs hors hacker ne peut bouger, faux sinon
+     * @return 
+     */
     public boolean personneBouge(){
         for(Joueur j : joueurs){
             if(this.verifJoueurPeutJouer(j) && j != hacker){

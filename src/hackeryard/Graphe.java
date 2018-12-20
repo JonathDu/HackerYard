@@ -46,8 +46,6 @@ public class Graphe {
      */
     public Graphe(Integer nbn, Integer tailleh, Integer taillel) {
         Integer nbcase = tailleh * taillel;
-//        ArrayList<Noeud> tableauN = new ArrayList<>();
-//        ArrayList<Arc> tableauA = new ArrayList<>();
         ArrayList<Integer> listecase = new ArrayList<>();
         this.tableauNoeuds = new ArrayList<>();
         this.tableauArcs = new ArrayList<>();
