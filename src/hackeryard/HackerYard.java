@@ -23,7 +23,7 @@ public class HackerYard extends Application {
     public void start(Stage primaryStage) {
         stage = primaryStage;
 
-        scene = new Scene(new Group(), 500, 600);
+        scene = new Scene(new Group(), 800, 600);
         stage.setScene(scene);
 
         Controller controller = new Controller(stage, scene);

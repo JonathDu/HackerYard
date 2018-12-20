@@ -7,6 +7,7 @@ package hackeryard;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * Classe de graphe, composé d'une liste d'arcs, de noeuds et de joueurs
@@ -43,9 +44,11 @@ public class Graphe {
      */
     public Graphe(Integer nbn, Integer tailleh, Integer taillel) {
         Integer nbcase = tailleh * taillel;
-        ArrayList<Noeud> tableauN = new ArrayList<>();
-        ArrayList<Arc> tableauA = new ArrayList<>();
+//        ArrayList<Noeud> tableauN = new ArrayList<>();
+//        ArrayList<Arc> tableauA = new ArrayList<>();
         ArrayList<Integer> listecase = new ArrayList<>();
+        this.tableauNoeuds = new ArrayList<>();
+        this.tableauArcs = new ArrayList<>();
         for (int j = 0; j < nbcase; j++) {
             listecase.add(j);
         }
@@ -56,55 +59,61 @@ public class Graphe {
             System.out.println(n);
             if (listecase.contains(n)) {
                 listecase.removeIf(yo -> yo.intValue() == n);
-                tableauN.add(new Noeud(n % taillel, n / taillel));
+                tableauNoeuds.add(new Noeud(n % taillel, n / taillel));
             } else {
                 i--;
             }
         }
-        for (int k = 0; k < nbn - 3; k++) {
-            int n1 = rand.nextInt(tableauN.size() - 1);
-            int n2 = rand.nextInt(tableauN.size() - 1);
+        int v = 0;
+        while (!isConnexe() && v!=500) {
+            for (int k = 0; k < nbn - 3; k++) {
+                int n1 = rand.nextInt(tableauNoeuds.size() - 1);
+                int n2 = rand.nextInt(tableauNoeuds.size() - 1);
 
-            if (((tableauN.get(n1).posX == tableauN.get(n2).posX) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 1)) || ((tableauN.get(n1).posY == tableauN.get(n2).posY) && (Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 1)) || ((((tableauN.get(n1).posX - tableauN.get(n2).posX) ^ 2) == 1) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 1))) {
+                if (((tableauNoeuds.get(n1).posX == tableauNoeuds.get(n2).posX) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 1)) || ((tableauNoeuds.get(n1).posY == tableauNoeuds.get(n2).posY) && (Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) == 1)) || ((((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX) ^ 2) == 1) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 1))) {
 
-                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 1));
+                    tableauArcs.add(new Arc(tableauNoeuds.get(n1), tableauNoeuds.get(n2), 1));
 
-            } else {
-                k--;
-            }
-        }
-        for (int l = 0; l < nbn / 2; l++) {
-            int n1 = rand.nextInt(tableauN.size() - 1);
-            int n2 = rand.nextInt(tableauN.size() - 1);
-            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) <= 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 4)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 4) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) <= 4))) {
-                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
-            } else {
-                l--;
-            }
-
-        }
-
-        for (int m = 0; m < nbn / 3; m++) {
-            int n1 = rand.nextInt(tableauN.size() - 1);
-            int n2 = rand.nextInt(tableauN.size() - 1);
-            if (((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) <= 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) == 9)) || ((Math.pow((tableauN.get(n1).posX - tableauN.get(n2).posX), 2) == 9) && (Math.pow((tableauN.get(n1).posY - tableauN.get(n2).posY), 2) <= 9))) {
-                tableauA.add(new Arc(tableauN.get(n1), tableauN.get(n2), 2));
-            } else {
-                m--;
-            }
-        }
-
-        for (int o = 0; o < tableauN.size(); o++) {
-            Boolean isRelie = false;
-            for (int p = 0; p < tableauA.size(); p++) {
-                if (tableauN.get(o) == tableauA.get(p).n1 || tableauN.get(o) == tableauA.get(p).n2) {
-                    isRelie = true;
+                } else {
+                    k--;
                 }
             }
-            if (isRelie == false) {
-                System.out.println("Le noeud "+tableauN.get(o).posX+","+tableauN.get(o).posY+" est isole, on le supprime donc");
-                tableauN.remove(o);
+
+            for (int l = 0; l < nbn / 2; l++) {
+                int n1 = rand.nextInt(tableauNoeuds.size() - 1);
+                int n2 = rand.nextInt(tableauNoeuds.size() - 1);
+                if (((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) <= 4) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 4)) || ((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) == 4) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) <= 4))) {
+                    tableauArcs.add(new Arc(tableauNoeuds.get(n1), tableauNoeuds.get(n2), 2));
+                } else {
+                    l--;
+                }
+
             }
+
+            for (int m = 0; m < nbn / 3; m++) {
+                int n1 = rand.nextInt(tableauNoeuds.size() - 1);
+                int n2 = rand.nextInt(tableauNoeuds.size() - 1);
+                if (((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) <= 9) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) == 9)) || ((Math.pow((tableauNoeuds.get(n1).posX - tableauNoeuds.get(n2).posX), 2) == 9) && (Math.pow((tableauNoeuds.get(n1).posY - tableauNoeuds.get(n2).posY), 2) <= 9))) {
+                    tableauArcs.add(new Arc(tableauNoeuds.get(n1), tableauNoeuds.get(n2), 2));
+                } else {
+                    m--;
+                }
+            }
+
+            for (int o = 0; o < tableauNoeuds.size(); o++) {
+                Boolean isRelie = false;
+                for (int p = 0; p < tableauArcs.size(); p++) {
+                    if (tableauNoeuds.get(o) == tableauArcs.get(p).n1 || tableauNoeuds.get(o) == tableauArcs.get(p).n2) {
+                        isRelie = true;
+                    }
+                }
+                if (isRelie == false) {
+                    System.out.println("Le noeud " + tableauNoeuds.get(o).posX + "," + tableauNoeuds.get(o).posY + " est isole, on le supprime donc");
+                    tableauNoeuds.remove(o);
+                }
+            }
+            System.out.println(v);
+            v++;
         }
         //manque a placer les joueurs aleatoirement
 //
@@ -113,12 +122,13 @@ public class Graphe {
 //        ArrayList<Joueur> posJoueurs = new ArrayList<>();
 //        posJoueurs.add(new FBI("pat", 2, 2, 2, tableauN.get(n1)));
 //        posJoueurs.add(new FBI("leo", 2, 2, 2, tableauN.get(n2)));
-        this.tableauNoeuds = tableauN;
-        this.tableauArcs = tableauA;
+        //this.tableauNoeuds = tableauN;
+        //this.tableauArcs = tableauA;
 //        this.tableauJoueurs = posJoueurs;
         System.out.println(listecase);
-        System.out.println(tableauN);
-        System.out.println(tableauA);
+        //System.out.println(tableauN);
+        //System.out.println(tableauA);
+        System.out.println(isConnexe());
     }
 
     /**
@@ -208,7 +218,8 @@ public class Graphe {
     }
 
     /**
-     * Ajoute une liste de joueur au graphe et leur assigne un noeud aléatoirement
+     * Ajoute une liste de joueur au graphe et leur assigne un noeud
+     * aléatoirement
      *
      * @param liste
      */
@@ -220,6 +231,33 @@ public class Graphe {
             int t = rand.nextInt(temp.size() - 1);
             j.position = temp.get(t);
             temp.remove(t);
+        }
+    }
+
+    /**
+     * Renvoie si le graphe obtenue est connexe
+     *
+     * @return
+     */
+    public boolean isConnexe() {
+        Random rand = new Random();
+        Noeud depart = tableauNoeuds.get(rand.nextInt(tableauNoeuds.size() - 1));
+        ArrayList<Noeud> composanteConnexe = new ArrayList<>();
+        Stack<Noeud> pile = new Stack<>();
+        pile.add(depart);
+        while (!pile.empty()) {
+            Noeud n = pile.pop();
+            for (Noeud t : GetSuivant(n)) {
+                if (!composanteConnexe.contains(t) && !pile.contains(t)) {
+                    pile.add(t);
+                }
+            }
+            composanteConnexe.add(n);
+        }
+        if (composanteConnexe.size() == tableauNoeuds.size()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
