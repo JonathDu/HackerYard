@@ -71,7 +71,7 @@ public class InterfaceGraphe extends Parent {
             root.getChildren().add(c);
             c.addEventHandler(MouseEvent.MOUSE_CLICKED, new HandlerNoeud(c, jeu, controller, noeudToInterface));
             c.setOnMouseEntered((t) -> {
-                if (jeu.getGraphe().GetSuivant(jeu.getJoueurCourant().position).contains(c.noeud)) {
+                if (jeu.getGraphe().GetSuivant(jeu.getJoueurCourant().position).contains(c.noeud) && !g.estOccupe(c.noeud)) {
                     c.cercle.setRadius(25);
 
                 }

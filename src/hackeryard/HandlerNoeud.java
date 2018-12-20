@@ -51,7 +51,11 @@ public class HandlerNoeud implements EventHandler<Event> {
                     jeu.getJoueurCourant().nombreT1--;
                     jeu.addCarteHacker(1);
                 } else {
-                    System.out.println("Vous n'avez pas de carte permettant se déplacement");
+                    Alert dialog = new Alert(Alert.AlertType.WARNING);
+                    dialog.setTitle("Erreur de déplacement");
+                    dialog.setHeaderText(null);
+                    dialog.setContentText("Vous n'avez pas de carte permettant se déplacement");
+                    dialog.showAndWait();
                     return;
                 }
                 break;
@@ -60,7 +64,11 @@ public class HandlerNoeud implements EventHandler<Event> {
                     jeu.getJoueurCourant().nombreT2--;
                     jeu.addCarteHacker(2);
                 } else {
-                    System.out.println("Vous n'avez pas de carte permettant se déplacement");
+                    Alert dialog = new Alert(Alert.AlertType.WARNING);
+                    dialog.setTitle("Erreur de déplacement");
+                    dialog.setHeaderText(null);
+                    dialog.setContentText("Vous n'avez pas de carte permettant se déplacement");
+                    dialog.showAndWait();
                     return;
                 }
                 break;
@@ -69,7 +77,11 @@ public class HandlerNoeud implements EventHandler<Event> {
                     jeu.getJoueurCourant().nombreT3--;
                     jeu.addCarteHacker(3);
                 } else {
-                    System.out.println("Vous n'avez pas de carte permettant se déplacement");
+                    Alert dialog = new Alert(Alert.AlertType.WARNING);
+                    dialog.setTitle("Erreur de déplacement");
+                    dialog.setHeaderText(null);
+                    dialog.setContentText("Vous n'avez pas de carte permettant se déplacement");
+                    dialog.showAndWait();
                     return;
                 }
                 break;
@@ -89,7 +101,11 @@ public class HandlerNoeud implements EventHandler<Event> {
                 dialog.showAndWait();
                 return;
             } else {
-                System.out.println("Un joueur occupe déja la case");
+                Alert dialog = new Alert(Alert.AlertType.WARNING);
+                dialog.setTitle("Erreur de déplacement");
+                dialog.setHeaderText(null);
+                dialog.setContentText("Un joueur occupe déja la case");
+                dialog.showAndWait();
                 return;
             }
         }
@@ -127,7 +143,7 @@ public class HandlerNoeud implements EventHandler<Event> {
     }
 
     private void gestionPosHacker() {
-        if ((jeu.getNbTourHacker() == 0 || jeu.getNbTour() == 3 || jeu.getNbTour() == 8 || jeu.getNbTour() == 13 || jeu.getNbTour() == 18) && jeu.tourHacker()) {
+        if ((jeu.getNbTour() == 3 || jeu.getNbTour() == 8 || jeu.getNbTour() == 13 || jeu.getNbTour() == 18) && jeu.tourHacker()) {
             noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();
             jeu.setPosHacker(noeud);
             noeudToInterface.get(noeud).ajouterHacker();

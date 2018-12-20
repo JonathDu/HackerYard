@@ -29,7 +29,7 @@ public class Controller {
     }
 
     public void toPlateau(ArrayList<Joueur> liste, Graphe g, Hacker hacker) {
-        scene.setRoot(new InterfacePlateau(this, scene, new Jeu(liste, g, 50, hacker)));
+        scene.setRoot(new InterfacePlateau(this, scene, new Jeu(liste, g, 22 * liste.size(), hacker)));
     }
 
     public void toJoueur() {

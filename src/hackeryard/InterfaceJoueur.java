@@ -106,12 +106,18 @@ public class InterfaceJoueur extends Interface {
             couleur.add(Color.GREEN);
             couleur.add(Color.RED);
 
-            Hacker h = new Hacker(3000, 3000, 3000, 3, 3, 3, couleur.get(0));
+            Hacker h = new Hacker(4, 3, 3, 2, joueur.size(), 3, couleur.get(0));
             liste.add(h);
             int i = 1;
             for (TextField e : joueur) {
-                liste.add(new FBI(e.getText(), 0, 0, 0, couleur.get(i)));
+                liste.add(new FBI(e.getText(), 10, 8, 4, couleur.get(i)));
                 i++;
+            }
+            if (joueur.size() == 2) {
+                for (TextField e : joueur) {
+                    liste.add(new FBI(e.getText() + " 2", 10, 8, 4, couleur.get(i)));
+                    i++;
+                }
             }
 
             Graphe g1 = new Graphe(50, 10, 20);
@@ -133,8 +139,5 @@ public class InterfaceJoueur extends Interface {
         }
         centre.getChildren().add(addPlayer);
     }
-    
-    
-
 
 }
