@@ -151,7 +151,7 @@ public class HandlerNoeud implements EventHandler<Event> {
      * Ajout de la position du hacker a la classe principale, si c'est un des tours ou il doit etre visible
      */
     private void gestionPosHacker() {
-        if ((jeu.getNbTour() == 3 || jeu.getNbTour() == 8 || jeu.getNbTour() == 13 || jeu.getNbTour() == 18) && jeu.tourHacker()) {
+        if ((jeu.getNbTourHacker()== 3 || jeu.getNbTourHacker() == 8 || jeu.getNbTourHacker() == 13 || jeu.getNbTourHacker() == 18) && jeu.tourHacker()) {
             noeudToInterface.get(jeu.getPosHacker()).supprimerHacker();
             jeu.setPosHacker(noeud);
             noeudToInterface.get(noeud).ajouterHacker();

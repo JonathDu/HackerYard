@@ -70,7 +70,7 @@ public class InterfaceNoeud extends Parent {
      * Ajoute le hacker sur le noeud
      */
     public void ajouterHacker() {
-        hacker = new Rectangle(CONSTANTE_TAILLE * posx + 47, CONSTANTE_TAILLE * posy + 47, 6, 6);
+        hacker = new Rectangle(CONSTANTE_TAILLE * posx + CONSTANTE_TAILLE - 3, CONSTANTE_TAILLE * posy + CONSTANTE_TAILLE - 3, 6, 6);
         hacker.setFill(Color.PURPLE);
 
         g.getChildren().add(hacker);
@@ -88,7 +88,8 @@ public class InterfaceNoeud extends Parent {
 
     /**
      * Ajoute une connexion de type type sur le noeud
-     * @param type 
+     *
+     * @param type
      */
     public void ajouterConnexion(int type) {
 
@@ -180,5 +181,5 @@ public class InterfaceNoeud extends Parent {
             hacker.toFront();
         }
     }
-   
+
 }

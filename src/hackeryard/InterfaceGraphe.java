@@ -48,15 +48,15 @@ public class InterfaceGraphe extends Parent {
                         Line l = new Line(CONSTANTE_TAILLE * i + CONSTANTE_TAILLE, CONSTANTE_TAILLE * j + CONSTANTE_TAILLE, CONSTANTE_TAILLE * n.posX + CONSTANTE_TAILLE, CONSTANTE_TAILLE * n.posY + CONSTANTE_TAILLE);
                         switch (g.typeArc(n, grille[i][j])) {
                             case 1:
-                                l.setStroke(Color.BISQUE);
+                                l.setStroke(Couleur.getCouleurArc(1));
                                 c.ajouterConnexion(1);
                                 break;
                             case 2:
-                                l.setStroke(Color.CHOCOLATE);
+                                l.setStroke(Couleur.getCouleurArc(2));
                                 c.ajouterConnexion(2);
                                 break;
                             case 3:
-                                l.setStroke(Color.DARKRED);
+                                l.setStroke(Couleur.getCouleurArc(3));
                                 c.ajouterConnexion(3);
                                 break;
                         }
